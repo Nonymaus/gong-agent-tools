@@ -48,16 +48,26 @@ class GongSessionExtractor:
     5. Returning ready-to-use Gong session
     """
     
-    def __init__(self, headless: bool = True, session_timeout: int = 300):
+    def __init__(self, headless: bool = True, session_timeout: int = 300,
+                 minimal_mode: bool = False, collect_js_variables: bool = True,
+                 collect_response_bodies: bool = True, early_exit_on_navigation: bool = False):
         """
         Initialize the Gong session extractor.
-        
+
         Args:
             headless: Whether to run browser in headless mode
             session_timeout: Timeout for session capture in seconds
+            minimal_mode: Enable minimal data collection for test suites
+            collect_js_variables: Whether to collect JavaScript variables (slow)
+            collect_response_bodies: Whether to analyze response bodies (slow)
+            early_exit_on_navigation: Exit immediately after navigation success
         """
         self.headless = headless
         self.session_timeout = session_timeout
+        self.minimal_mode = minimal_mode
+        self.collect_js_variables = collect_js_variables
+        self.collect_response_bodies = collect_response_bodies
+        self.early_exit_on_navigation = early_exit_on_navigation
         self.auth_manager = GongAuthenticationManager()
         
         # Session capture state
@@ -89,11 +99,26 @@ class GongSessionExtractor:
             # Create session name with timestamp
             session_name = f"gong_session_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
             
-            # Initialize capture session
+            # Initialize capture session with optimization parameters and credential monitoring
             self.capture_session = StealthGodCaptureSession(
                 session_name=session_name,
-                okta_session=True
+                okta_session=True,
+                headless=self.headless,
+                minimal_mode=self.minimal_mode,
+                collect_js_variables=self.collect_js_variables,
+                collect_response_bodies=self.collect_response_bodies,
+                early_exit_on_navigation=self.early_exit_on_navigation
             )
+
+            # Enable credential monitoring for smart early exit
+            try:
+                from app_backend.agent_tools._godcapture.tests.universal_platform_credential_test import CredentialMonitor, PLATFORM_CONFIGS
+                if "Gong" in PLATFORM_CONFIGS:
+                    gong_config = PLATFORM_CONFIGS["Gong"]
+                    self.capture_session.credential_monitor = CredentialMonitor(gong_config)
+                    logger.info("✅ Credential monitoring enabled for Gong")
+            except ImportError:
+                logger.warning("⚠️ Credential monitoring not available, using standard capture")
             
             self.session_dir = self.capture_session.session_dir
             logger.info(f"📂 Session directory: {self.session_dir}")
@@ -115,14 +140,19 @@ class GongSessionExtractor:
         """Run the actual session capture process"""
         try:
             logger.info("🌐 Launching stealth browser for session capture")
-            
-            # Run the capture session
-            await self.capture_session.launch_stealth_session()
-            
-            # Analyze captured data
-            session_data = await self._analyze_captured_data()
-            
-            return session_data
+
+            # Run the capture session with target platform in programmatic mode
+            session_data = await self.capture_session.launch_stealth_session(
+                target_platform=target_app,
+                programmatic_mode=True
+            )
+
+            if session_data:
+                logger.info(f"✅ Session capture successful: {len(session_data.get('authentication_tokens', []))} tokens")
+                return session_data
+            else:
+                logger.error("❌ Session capture failed - no data returned")
+                return None
             
         except Exception as e:
             logger.error(f"❌ Error during capture session: {e}")
