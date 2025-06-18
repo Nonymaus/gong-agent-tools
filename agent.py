@@ -701,3 +701,150 @@ class GongAgent:
                 'performance_met': False,
                 'object_types_met': False
             }
+
+    def _refresh_session_sync(self) -> Optional[Dict[str, Any]]:
+        """
+        Synchronous wrapper for session refresh using asyncio.
+
+        Returns:
+            Fresh session data or None if refresh failed
+        """
+        try:
+            import asyncio
+
+            # Check if we're already in an event loop
+            try:
+                loop = asyncio.get_running_loop()
+                # If we're in a loop, we need to run in a thread
+                import concurrent.futures
+                with concurrent.futures.ThreadPoolExecutor() as executor:
+                    future = executor.submit(asyncio.run, self.session_manager.refresh_session_if_needed())
+                    return future.result(timeout=300)  # 5 minute timeout
+            except RuntimeError:
+                # No running loop, we can use asyncio.run directly
+                return asyncio.run(self.session_manager.refresh_session_if_needed())
+
+        except Exception as e:
+            logger.error(f"❌ Error in synchronous session refresh: {e}")
+            return None
+
+    def _convert_session_data_to_artifacts(self, session_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """
+        Convert session data from session manager to artifacts format.
+
+        Args:
+            session_data: Session data from GongSessionManager
+
+        Returns:
+            List of artifacts in the format expected by auth_manager
+        """
+        artifacts = []
+
+        try:
+            # Convert authentication tokens
+            for token_data in session_data.get('authentication_tokens', []):
+                artifacts.append({
+                    'type': 'jwt_token',
+                    'value': token_data.get('raw_token', ''),
+                    'source': 'header',
+                    'metadata': {
+                        'token_type': token_data.get('token_type', 'access'),
+                        'expires_at': token_data.get('expires_at'),
+                        'cell_id': token_data.get('cell_id'),
+                        'user_email': token_data.get('user_email')
+                    }
+                })
+
+            # Convert session cookies
+            for cookie_name, cookie_value in session_data.get('session_cookies', {}).items():
+                artifacts.append({
+                    'type': 'session_cookie',
+                    'value': cookie_value,
+                    'source': 'cookie',
+                    'metadata': {
+                        'name': cookie_name,
+                        'domain': 'gong.io'
+                    }
+                })
+
+            # Add workspace information
+            if session_data.get('workspace_id'):
+                artifacts.append({
+                    'type': 'workspace_info',
+                    'value': session_data['workspace_id'],
+                    'source': 'api_response',
+                    'metadata': {
+                        'cell_id': session_data.get('cell_id'),
+                        'company_id': session_data.get('company_id'),
+                        'user_email': session_data.get('user_email')
+                    }
+                })
+
+            logger.info(f"✅ Converted session data to {len(artifacts)} artifacts")
+            return artifacts
+
+        except Exception as e:
+            logger.error(f"❌ Error converting session data to artifacts: {e}")
+            return []
+
+    def enable_auto_refresh(self) -> None:
+        """Enable automatic session refresh on authentication failures"""
+        self.auto_refresh_enabled = True
+        logger.info("✅ Automatic session refresh enabled")
+
+    def disable_auto_refresh(self) -> None:
+        """Disable automatic session refresh"""
+        self.auto_refresh_enabled = False
+        logger.info("⚠️ Automatic session refresh disabled")
+
+    async def capture_fresh_session_async(self, target_app: str = "Gong") -> Dict[str, Any]:
+        """
+        Asynchronously capture a fresh Gong session.
+
+        Args:
+            target_app: Name of the target app in Okta
+
+        Returns:
+            Fresh session data
+
+        Raises:
+            GongAgentError: If session capture fails
+        """
+        try:
+            logger.info(f"🔄 Capturing fresh Gong session for app: {target_app}")
+
+            session_data = await self.session_manager.get_fresh_session(target_app)
+
+            # Convert to GongSession and set in agent
+            refreshed_session = self.auth_manager.extract_session_from_analysis_data({
+                'artifacts': self._convert_session_data_to_artifacts(session_data)
+            })
+
+            self.session = refreshed_session
+            self.api_client.set_session(refreshed_session)
+
+            logger.info("✅ Fresh session captured and set in agent")
+            return session_data
+
+        except Exception as e:
+            logger.error(f"❌ Failed to capture fresh session: {e}")
+            raise GongAgentError(f"Fresh session capture failed: {e}")
+
+    def capture_fresh_session(self, target_app: str = "Gong") -> Dict[str, Any]:
+        """
+        Synchronously capture a fresh Gong session.
+
+        Args:
+            target_app: Name of the target app in Okta
+
+        Returns:
+            Fresh session data
+
+        Raises:
+            GongAgentError: If session capture fails
+        """
+        try:
+            import asyncio
+            return asyncio.run(self.capture_fresh_session_async(target_app))
+        except Exception as e:
+            raise GongAgentError(f"Fresh session capture failed: {e}")

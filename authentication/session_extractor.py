@@ -68,6 +68,7 @@ class GongSessionExtractor:
         logger.info("🔧 Gong Session Extractor initialized")
         logger.info(f"🎯 Target: Gong platform authentication")
         logger.info(f"⚙️ Headless: {headless}, Timeout: {session_timeout}s")
+        logger.info("🗜️ HAR compression: enabled (via _godcapture core)")
     
     async def capture_fresh_session(self, target_app: str = "Gong") -> Optional[Dict[str, Any]]:
         """
@@ -186,6 +187,8 @@ class GongSessionExtractor:
             logger.info(f"👤 User: {session_data['user_email']}")
             logger.info(f"🏢 Cell: {session_data['cell_id']}")
             logger.info(f"🔑 Tokens: {len(session_data['authentication_tokens'])}")
+            
+            # The HAR file is already compressed by StealthGodCaptureSession
             
             return session_data
             

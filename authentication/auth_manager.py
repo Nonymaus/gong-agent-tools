@@ -94,12 +94,27 @@ class GongAuthenticationManager:
         """
         logger.info(f"Extracting Gong session from HAR: {har_file_path}")
         
-        if not har_file_path.exists():
+        # Use _godcapture's load_har which handles compression automatically
+        try:
+            # Import here to avoid circular dependency
+            import sys
+            from pathlib import Path
+            sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+            from _godcapture.core.har_compression import load_har
+            har_data = load_har(har_file_path)
+        except FileNotFoundError:
             raise GongAuthenticationError(f"HAR file not found: {har_file_path}")
-        
-        # Load HAR data
-        with open(har_file_path, 'r', encoding='utf-8') as f:
-            har_data = json.load(f)
+        except ImportError:
+            # Fallback to standard loading if _godcapture not available
+            import gzip
+            if har_file_path.suffix == '.gz' or har_file_path.name.endswith('.har.gz'):
+                with gzip.open(har_file_path, 'rt', encoding='utf-8') as f:
+                    har_data = json.load(f)
+            else:
+                with open(har_file_path, 'r', encoding='utf-8') as f:
+                    har_data = json.load(f)
+        except Exception as e:
+            raise GongAuthenticationError(f"Failed to load HAR file: {e}")
         
         entries = har_data.get('log', {}).get('entries', [])
         

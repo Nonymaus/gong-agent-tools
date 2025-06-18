@@ -66,27 +66,40 @@ The session validation follows this sequence:
 
 **Implementation Status**: ✅ **Implemented** - Session validation logic with real artifact checking
 
-### 2.2 Authentication Sequence (Re-authentication Required)
+### 2.2 Authentication Sequence with _godcapture Integration
 
 **Primary Component**: `app_backend/agent_tools/gong/authentication/session_extractor.py::GongSessionExtractor`
 
-The complete authentication flow when re-authentication is required:
+The complete authentication flow with _godcapture integration:
 
-1. **Browser-based Session Capture**:
+1. **Automated Browser Session Capture**:
    ```python
-   async def capture_fresh_session(self) -> Optional[Dict[str, Any]]:
-       # 1. Launch browser with HAR capture enabled
-       # 2. Navigate to Gong login page
-       # 3. Perform authentication (manual or automated)
-       # 4. Capture all network requests and responses
-       # 5. Extract authentication artifacts from HAR data
+   async def capture_fresh_session(self, target_app: str = "Gong") -> Optional[Dict[str, Any]]:
+       # 1. Initialize StealthGodCaptureSession with Okta integration
+       # 2. Launch stealth browser with WebAuthn credentials
+       # 3. Navigate through Okta authentication to Gong app
+       # 4. Capture all network traffic via HAR recording
+       # 5. Extract authentication artifacts using UniversalHARAnalyzer
    ```
 
-2. **Token Extraction**: Real-time collection of authentication tokens during navigation
-3. **Session Establishment**: Extract and validate Gong session artifacts
-4. **Workspace Detection**: Identify available workspaces and permissions
+2. **Integrated Session Management**:
+   ```python
+   class GongSessionManager:
+       async def get_fresh_session(self, target_app: str = "Gong") -> Dict[str, Any]:
+           # Automated session capture with validation
+           # Session lifecycle management
+           # Automatic refresh capabilities
+   ```
 
-**Implementation Status**: ✅ **Implemented** - Session extraction framework with HAR analysis
+3. **Agent Integration**: Enhanced GongAgent with automatic session refresh
+   ```python
+   def _refresh_session_sync(self) -> Optional[Dict[str, Any]]:
+       # Synchronous wrapper for async session operations
+       # Automatic retry logic with fresh session capture
+       # Seamless integration with existing extraction methods
+   ```
+
+**Implementation Status**: ✅ **Implemented** - Complete _godcapture integration with automated session capture
 
 ### 2.3 Session Refresh Mechanisms
 
@@ -307,23 +320,29 @@ class ValidationResult:
 ### 6.1 Implemented Components
 
 ✅ **Session Management**: Complete HAR-based session extraction and validation
+✅ **_godcapture Integration**: Automated session capture with stealth browser automation
 ✅ **API Client Architecture**: Multi-endpoint support with authentication handling
 ✅ **Data Models**: Pydantic-based type-safe models with factory pattern
 ✅ **Validation Framework**: Comprehensive validation against ground truth data
 ✅ **Test Suite**: Production-ready test suite with real data validation framework
+✅ **Automatic Session Refresh**: Integrated session lifecycle management with retry logic
 
-### 6.2 Session-Dependent vs. Framework Implementation
+### 6.2 Production-Ready vs. Session-Dependent Implementation
 
-**Framework Implementation (Session-Independent)**:
-- Session extraction and validation logic
-- API client structure with authentication handling
-- Data model validation and transformation
-- Validation framework with ground truth comparison
+**Production-Ready Implementation**:
+- ✅ Complete session extraction and validation logic
+- ✅ Automated session capture via _godcapture integration
+- ✅ API client structure with authentication handling
+- ✅ Data model validation and transformation
+- ✅ Validation framework with ground truth comparison
+- ✅ Automatic session refresh on authentication failures
+- ✅ Synchronous and asynchronous session capture methods
 
-**Session-Dependent (Requires Fresh Capture)**:
-- Live data extraction from Gong APIs
-- Real-time authentication token validation
-- Complete end-to-end data extraction workflow
+**Session-Dependent (Requires Live Testing)**:
+- 🔄 Live data extraction validation with fresh session
+- 🔄 Real-time authentication token validation
+- 🔄 Production performance benchmarking with live data
+- 🔄 >95% accuracy validation against ground truth
 
 **Test Suite Validation Approach**:
 
