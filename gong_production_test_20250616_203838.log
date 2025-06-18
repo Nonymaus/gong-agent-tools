@@ -1,0 +1,218 @@
+2025-06-16 20:38:38,187 - INFO - 🚀 Starting Gong Toolkit Production Functionality Tests
+2025-06-16 20:38:38,187 - INFO - ================================================================================
+2025-06-16 20:38:38,187 - INFO - 🔍 Checking Production Test Prerequisites
+2025-06-16 20:38:38,195 - INFO -   ✓ HAR analysis file found with artifacts
+2025-06-16 20:38:38,496 - INFO -   ✓ Gong toolkit modules importable
+2025-06-16 20:38:38,574 - INFO -   ✓ Test environment ready
+2025-06-16 20:38:38,574 - INFO - 
+📊 Prerequisites Status: 3/3 ready
+2025-06-16 20:38:38,574 - INFO - ✅ All prerequisites met - ready for production testing
+2025-06-16 20:38:38,575 - INFO - 
+🔐 Running Production Authentication Test
+2025-06-16 20:38:38,582 - INFO - Extracting Gong session from analysis data
+2025-06-16 20:38:38,582 - INFO - Successfully extracted Gong session from artifacts for jared.boynton@postman.com
+2025-06-16 20:38:38,583 - INFO - ✅ Authentication test passed:
+2025-06-16 20:38:38,583 - INFO -   User: jared.boynton@postman.com
+2025-06-16 20:38:38,583 - INFO -   Cell: us-14496
+2025-06-16 20:38:38,583 - INFO -   Tokens: 4
+2025-06-16 20:38:38,583 - INFO - 
+🌐 Running Production API Test
+2025-06-16 20:38:38,590 - INFO - Extracting Gong session from analysis data
+2025-06-16 20:38:38,591 - INFO - Successfully extracted Gong session from artifacts for jared.boynton@postman.com
+2025-06-16 20:38:38,591 - INFO - Gong API client initialized
+2025-06-16 20:38:38,591 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:38:38,591 - ERROR - ❌ API test failed: 'GongAPIClient' object has no attribute 'get_connection_status'
+2025-06-16 20:38:38,591 - INFO - 
+📊 Running Production Data Extraction Test
+2025-06-16 20:38:38,591 - INFO - Gong API client initialized
+2025-06-16 20:38:38,592 - INFO - Gong agent initialized
+2025-06-16 20:38:38,592 - INFO - Extracting Gong session from analysis: /Users/jared.boynton@postman.com/CS-Ascension/app_backend/agent_tools/_godcapture/data/gong-multitab-capture/analysis/godcapture_analysis.json
+2025-06-16 20:38:38,599 - INFO - Successfully extracted Gong session from analysis for jared.boynton@postman.com
+2025-06-16 20:38:38,599 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:38:38,599 - INFO - Session set for Gong agent: jared.boynton@postman.com
+2025-06-16 20:38:38,599 - INFO - Testing API connection
+2025-06-16 20:38:39,111 - ERROR - API connection test failed: Authentication failed - session may be expired
+2025-06-16 20:38:39,111 - ERROR - ❌ Extraction test failed: 'bool' object has no attribute 'get'
+2025-06-16 20:38:39,111 - INFO - 
+🧪 Running Full Production Test Suite
+2025-06-16 20:38:39,421 - INFO - 🔧 Configuring pytest for CS-Ascension project
+2025-06-16 20:38:39,460 - INFO - 🧪 Running test: test_production_authentication_functionality
+2025-06-16 20:38:39,461 - INFO - 🧪 Test environment configured
+2025-06-16 20:38:39,468 - INFO - 🔐 Testing Production Authentication Functionality
+2025-06-16 20:38:39,475 - INFO - Extracting Gong session from analysis data
+2025-06-16 20:38:39,476 - INFO - Successfully extracted Gong session from artifacts for jared.boynton@postman.com
+2025-06-16 20:38:39,476 - INFO - ✅ Production authentication functional test passed:
+2025-06-16 20:38:39,476 - INFO -   Session extracted: jared.boynton@postman.com
+2025-06-16 20:38:39,476 - INFO -   Cell ID: us-14496
+2025-06-16 20:38:39,476 - INFO -   Tokens: 4
+2025-06-16 20:38:39,476 - INFO -   Authentication time: 0.01s
+2025-06-16 20:38:39,477 - INFO - ✅ Completed test: test_production_authentication_functionality
+2025-06-16 20:38:39,477 - INFO - 
+📊 Production Test Results:
+2025-06-16 20:38:39,477 - INFO -   Total test time: 0.02s
+2025-06-16 20:38:39,477 - INFO -   Objects extracted: 0
+2025-06-16 20:38:39,477 - INFO -   Total records: 0
+2025-06-16 20:38:39,477 - INFO -   Success rate: 0.0%
+2025-06-16 20:38:39,477 - INFO -   Failed operations: 0
+2025-06-16 20:38:39,496 - INFO - 🧪 Running test: test_production_api_functionality
+2025-06-16 20:38:39,503 - INFO - 🌐 Testing Production API Functionality
+2025-06-16 20:38:39,503 - INFO - Gong API client initialized
+2025-06-16 20:38:39,509 - INFO - Extracting Gong session from analysis data
+2025-06-16 20:38:39,510 - INFO - Successfully extracted Gong session from artifacts for jared.boynton@postman.com
+2025-06-16 20:38:39,510 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:38:39,510 - ERROR - ❌ Production API functionality failed: 'GongAPIClient' object has no attribute 'get_connection_status'
+2025-06-16 20:38:39,550 - INFO - ✅ Completed test: test_production_api_functionality
+2025-06-16 20:38:39,550 - INFO - 
+📊 Production Test Results:
+2025-06-16 20:38:39,550 - INFO -   Total test time: 0.05s
+2025-06-16 20:38:39,551 - INFO -   Objects extracted: 0
+2025-06-16 20:38:39,551 - INFO -   Total records: 0
+2025-06-16 20:38:39,551 - INFO -   Success rate: 0.0%
+2025-06-16 20:38:39,551 - INFO -   Failed operations: 1
+2025-06-16 20:38:39,567 - INFO - 🧪 Running test: test_production_data_extraction_functionality
+2025-06-16 20:38:39,574 - INFO - 📊 Testing Production Data Extraction Functionality
+2025-06-16 20:38:39,575 - INFO - Gong API client initialized
+2025-06-16 20:38:39,575 - INFO - Gong agent initialized
+2025-06-16 20:38:39,575 - INFO - Extracting Gong session from analysis: /Users/jared.boynton@postman.com/CS-Ascension/app_backend/agent_tools/_godcapture/data/gong-multitab-capture/analysis/godcapture_analysis.json
+2025-06-16 20:38:39,583 - INFO - Successfully extracted Gong session from analysis for jared.boynton@postman.com
+2025-06-16 20:38:39,583 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:38:39,583 - INFO - Session set for Gong agent: jared.boynton@postman.com
+2025-06-16 20:38:39,583 - INFO - Testing API connection
+2025-06-16 20:38:39,903 - ERROR - API connection test failed: Authentication failed - session may be expired
+2025-06-16 20:38:39,903 - ERROR - ❌ Production data extraction functionality failed: 'bool' object is not subscriptable
+2025-06-16 20:38:39,910 - INFO - ✅ Completed test: test_production_data_extraction_functionality
+2025-06-16 20:38:39,910 - INFO - 
+📊 Production Test Results:
+2025-06-16 20:38:39,910 - INFO -   Total test time: 0.34s
+2025-06-16 20:38:39,911 - INFO -   Objects extracted: 0
+2025-06-16 20:38:39,911 - INFO -   Total records: 0
+2025-06-16 20:38:39,911 - INFO -   Success rate: 0.0%
+2025-06-16 20:38:39,911 - INFO -   Failed operations: 1
+2025-06-16 20:38:39,932 - INFO - 🧪 Running test: test_production_performance_requirements
+2025-06-16 20:38:39,940 - INFO - ⚡ Testing Production Performance Requirements
+2025-06-16 20:38:39,941 - INFO - Gong API client initialized
+2025-06-16 20:38:39,941 - INFO - Gong agent initialized
+2025-06-16 20:38:39,941 - INFO - Extracting Gong session from analysis: /Users/jared.boynton@postman.com/CS-Ascension/app_backend/agent_tools/_godcapture/data/gong-multitab-capture/analysis/godcapture_analysis.json
+2025-06-16 20:38:39,949 - INFO - Successfully extracted Gong session from analysis for jared.boynton@postman.com
+2025-06-16 20:38:39,950 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:38:39,950 - INFO - Session set for Gong agent: jared.boynton@postman.com
+2025-06-16 20:38:39,950 - INFO - Starting quick extraction
+2025-06-16 20:38:39,950 - INFO - Starting comprehensive Gong data extraction
+2025-06-16 20:38:39,950 - INFO - Extracting calls data (limit=50)
+2025-06-16 20:38:39,950 - INFO - Fetching my calls (limit=50, offset=0)
+2025-06-16 20:38:40,181 - ERROR - Failed to extract calls: Authentication failed - session may be expired
+2025-06-16 20:38:40,181 - ERROR - ❌ Calls extraction failed: Calls extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:40,182 - INFO - Extracting users data
+2025-06-16 20:38:40,182 - INFO - Fetching users
+2025-06-16 20:38:40,276 - ERROR - Failed to extract users: Authentication failed - session may be expired
+2025-06-16 20:38:40,276 - ERROR - ❌ Users extraction failed: Users extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:40,277 - INFO - Extracting deals data (limit=50)
+2025-06-16 20:38:40,277 - INFO - Fetching deals (limit=50, offset=0)
+2025-06-16 20:38:40,386 - ERROR - Failed to extract deals: Authentication failed - session may be expired
+2025-06-16 20:38:40,387 - ERROR - ❌ Deals extraction failed: Deals extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:40,388 - INFO - Extracting conversations data (limit=25)
+2025-06-16 20:38:40,388 - INFO - Fetching conversations (limit=25)
+2025-06-16 20:38:40,465 - ERROR - Failed to extract conversations: Authentication failed - session may be expired
+2025-06-16 20:38:40,465 - ERROR - ❌ Conversations extraction failed: Conversations extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:40,465 - INFO - Extracting library data
+2025-06-16 20:38:40,465 - INFO - Fetching library data (folder_id=None)
+2025-06-16 20:38:40,584 - ERROR - Failed to extract library: Authentication failed - session may be expired
+2025-06-16 20:38:40,585 - ERROR - ❌ Library extraction failed: Library extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:40,585 - INFO - Extracting team statistics
+2025-06-16 20:38:40,585 - INFO - Fetching team stats for avgCallDuration (week)
+2025-06-16 20:38:40,687 - WARNING - Failed to get avgCallDuration: Authentication failed - session may be expired
+2025-06-16 20:38:40,687 - INFO - Fetching team stats for totalCalls (week)
+2025-06-16 20:38:40,768 - WARNING - Failed to get totalCalls: Authentication failed - session may be expired
+2025-06-16 20:38:40,769 - INFO - Fetching team stats for avgWeeklyCalls (week)
+2025-06-16 20:38:40,891 - WARNING - Failed to get avgWeeklyCalls: Authentication failed - session may be expired
+2025-06-16 20:38:40,892 - INFO - Fetching team stats for totalDuration (week)
+2025-06-16 20:38:40,972 - WARNING - Failed to get totalDuration: Authentication failed - session may be expired
+2025-06-16 20:38:40,972 - INFO - Successfully extracted team stats for 0 metrics
+2025-06-16 20:38:40,972 - INFO - ✅ Team stats extraction successful
+2025-06-16 20:38:40,972 - INFO - 🎯 Extraction complete: 1/6 objects in 1.02s
+2025-06-16 20:38:40,972 - INFO - 📊 Success rate: 16.7%, Performance target: ✅ MET
+2025-06-16 20:38:40,973 - WARNING - ⚠️  Only 1 object types extracted (target: ≥5)
+2025-06-16 20:38:40,973 - WARNING - Quick extract failed, testing individual components: Must extract ≥4 object types, got 1
+assert 1 >= 4
+2025-06-16 20:38:40,973 - INFO - Extracting calls data (limit=5)
+2025-06-16 20:38:40,973 - INFO - Fetching my calls (limit=5, offset=0)
+2025-06-16 20:38:41,085 - ERROR - Failed to extract calls: Authentication failed - session may be expired
+2025-06-16 20:38:41,085 - WARNING - Individual test extract_calls failed: Calls extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:41,085 - INFO - Extracting users data
+2025-06-16 20:38:41,085 - INFO - Fetching users
+2025-06-16 20:38:41,179 - ERROR - Failed to extract users: Authentication failed - session may be expired
+2025-06-16 20:38:41,179 - WARNING - Individual test extract_users failed: Users extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:41,179 - INFO - Extracting deals data (limit=100)
+2025-06-16 20:38:41,179 - INFO - Fetching deals (limit=100, offset=0)
+2025-06-16 20:38:41,286 - ERROR - Failed to extract deals: Authentication failed - session may be expired
+2025-06-16 20:38:41,286 - WARNING - Individual test extract_deals failed: Deals extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:41,286 - ERROR - ❌ Production performance requirements failed: Individual success rate too low: 0.0% (target: ≥60%)
+assert 0.0 >= 60.0
+2025-06-16 20:38:41,296 - INFO - ✅ Completed test: test_production_performance_requirements
+2025-06-16 20:38:41,296 - INFO - 
+📊 Production Test Results:
+2025-06-16 20:38:41,296 - INFO -   Total test time: 1.36s
+2025-06-16 20:38:41,296 - INFO -   Objects extracted: 0
+2025-06-16 20:38:41,296 - INFO -   Total records: 0
+2025-06-16 20:38:41,296 - INFO -   Success rate: 0.0%
+2025-06-16 20:38:41,296 - INFO -   Failed operations: 1
+2025-06-16 20:38:41,319 - INFO - 🧪 Running test: test_production_data_structure_validation
+2025-06-16 20:38:41,319 - INFO - 📋 Testing Production Data Structure Validation
+2025-06-16 20:38:41,319 - INFO - Gong API client initialized
+2025-06-16 20:38:41,319 - INFO - Gong agent initialized
+2025-06-16 20:38:41,319 - INFO - Extracting Gong session from analysis: /Users/jared.boynton@postman.com/CS-Ascension/app_backend/agent_tools/_godcapture/data/gong-multitab-capture/analysis/godcapture_analysis.json
+2025-06-16 20:38:41,327 - INFO - Successfully extracted Gong session from analysis for jared.boynton@postman.com
+2025-06-16 20:38:41,328 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:38:41,328 - INFO - Session set for Gong agent: jared.boynton@postman.com
+2025-06-16 20:38:41,328 - INFO -   Validating calls structure...
+2025-06-16 20:38:41,328 - INFO - Extracting calls data (limit=3)
+2025-06-16 20:38:41,328 - INFO - Fetching my calls (limit=3, offset=0)
+2025-06-16 20:38:41,605 - ERROR - Failed to extract calls: Authentication failed - session may be expired
+2025-06-16 20:38:41,606 - WARNING -     ❌ calls structure validation failed: Calls extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:41,606 - INFO -   Validating users structure...
+2025-06-16 20:38:41,606 - INFO - Extracting users data
+2025-06-16 20:38:41,606 - INFO - Fetching users
+2025-06-16 20:38:41,718 - ERROR - Failed to extract users: Authentication failed - session may be expired
+2025-06-16 20:38:41,718 - WARNING -     ❌ users structure validation failed: Users extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:41,718 - INFO -   Validating deals structure...
+2025-06-16 20:38:41,718 - INFO - Extracting deals data (limit=100)
+2025-06-16 20:38:41,718 - INFO - Fetching deals (limit=100, offset=0)
+2025-06-16 20:38:41,822 - ERROR - Failed to extract deals: Authentication failed - session may be expired
+2025-06-16 20:38:41,823 - WARNING -     ❌ deals structure validation failed: Deals extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:41,823 - INFO -   Validating conversations structure...
+2025-06-16 20:38:41,823 - INFO - Extracting conversations data (limit=3)
+2025-06-16 20:38:41,823 - INFO - Fetching conversations (limit=3)
+2025-06-16 20:38:41,922 - ERROR - Failed to extract conversations: Authentication failed - session may be expired
+2025-06-16 20:38:41,922 - WARNING -     ❌ conversations structure validation failed: Conversations extraction failed: Authentication failed - session may be expired
+2025-06-16 20:38:41,923 - INFO -   Validating team_stats structure...
+2025-06-16 20:38:41,923 - INFO - Extracting team statistics
+2025-06-16 20:38:41,923 - INFO - Fetching team stats for avgCallDuration (week)
+2025-06-16 20:38:42,075 - WARNING - Failed to get avgCallDuration: Authentication failed - session may be expired
+2025-06-16 20:38:42,076 - INFO - Fetching team stats for totalCalls (week)
+2025-06-16 20:38:42,182 - WARNING - Failed to get totalCalls: Authentication failed - session may be expired
+2025-06-16 20:38:42,183 - INFO - Fetching team stats for avgWeeklyCalls (week)
+2025-06-16 20:38:42,273 - WARNING - Failed to get avgWeeklyCalls: Authentication failed - session may be expired
+2025-06-16 20:38:42,273 - INFO - Fetching team stats for totalDuration (week)
+2025-06-16 20:38:42,405 - WARNING - Failed to get totalDuration: Authentication failed - session may be expired
+2025-06-16 20:38:42,405 - INFO - Successfully extracted team stats for 0 metrics
+2025-06-16 20:38:42,405 - WARNING -     ❌ team_stats structure validation failed: 0
+2025-06-16 20:38:42,405 - INFO - ✅ Production data structure validation completed
+2025-06-16 20:38:42,406 - INFO - ✅ Completed test: test_production_data_structure_validation
+2025-06-16 20:38:42,426 - INFO - 🧪 Test environment cleanup completed
+2025-06-16 20:38:42,540 - ERROR - ❌ Full production test suite failed (exit code: 1)
+2025-06-16 20:38:42,540 - INFO - 
+================================================================================
+2025-06-16 20:38:42,540 - INFO - 📊 Production Test Results Summary
+2025-06-16 20:38:42,540 - INFO - ================================================================================
+2025-06-16 20:38:42,540 - INFO -   Authentication: ✅ PASSED
+2025-06-16 20:38:42,541 - INFO -   Api: ❌ FAILED
+2025-06-16 20:38:42,541 - INFO -   Extraction: ❌ FAILED
+2025-06-16 20:38:42,541 - INFO -   Full_Suite: ❌ FAILED
+2025-06-16 20:38:42,541 - INFO - 
+Overall Results:
+2025-06-16 20:38:42,541 - INFO -   Tests passed: 1/4
+2025-06-16 20:38:42,541 - INFO -   Success rate: 25.0%
+2025-06-16 20:38:42,541 - INFO -   Total time: 4.35s
+2025-06-16 20:38:42,541 - WARNING - 
+⚠️  3 test(s) failed
+2025-06-16 20:38:42,541 - INFO - 🔧 Review failed tests and fix issues before production deployment

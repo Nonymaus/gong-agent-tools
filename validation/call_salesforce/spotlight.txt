@@ -1,0 +1,77 @@
+Highlights
+
+
+Recap
+Sachin, Noah, Brian and Ian from Postman, along with Daryl from Salesforce, discussed Salesforce's plans to support the Google protocol (A2A) and the MCP protocol, including integrating an MCP client within Agent Force. They also explored potential partnership opportunities, such as Postman acting as an "MCP spigot" to provide access to verified MCP servers, and Salesforce's interest in Postman's Minimum Commercially Viable Solution feature, with Daryl inviting Postman to participate in an upcoming pilot.
+
+Key points
+1. Postman and Salesforce have been closely collaborating on interoperability and agent-based features.
+2. Salesforce plans to pilot an MCP client within Salesforce Agent Force and add A2A support.
+3. Postman has an MCP server generator and catalog that can be integrated into Salesforce's agent exchange.
+4. Postman and Salesforce see potential in integrating their agent/API ecosystems and enabling cross-platform workflows.
+5. Salesforce will connect Postman with the appropriate partnership team to explore a deeper integration.
+6. Postman is tracking A2A but currently focused on MCP adoption, which is more mature in the market.
+7. Salesforce will reach out to Postman about participating in their upcoming MCP pilot.
+8. Postman and Salesforce will coordinate follow-up discussions with additional stakeholders from both companies.
+9. Postman's Flows product allows composing multiple APIs into reusable agent-based workflows.
+10. Postman has generated thousands of MCP servers monthly, which could be a valuable resource for Salesforce's agent exchange.
+
+Next steps
+* Daryl and Sachin will dig into the idea of a shared model of connecting exchanges or ecosystems further.
+* Daryl will reach out to Noah, Brian, and Sachin to discuss potential partnership opportunities and pilot their product together.
+* Brian will reach out to Carla Pola this week and provide a quick summary to see what they can do.
+
+Outline
+
+
+Introductions
+* Brian inquires if Daryl can hear crying in the background, which Sachin confirms he cannot. Ian indicates they are ready to proceed.
+* Daryl greets the group, and Sachin shares that his wedding is this Saturday, so he is juggling wedding planning with the call.
+
+Postman Team Introductions
+* Sachin explains that two key people were unable to join the call, so he will try to reach out to Rodric. He asks Brian to introduce the Postman team, which includes Brian from the accounts team, Ian from the solutions engineering team, and Sachin from the customer success team.
+* Brian introduces the Postman team and their roles, and Daryl clarifies the pronunciation of "Postman" versus "Postman".
+* Daryl introduces himself as a product director at Salesforce, working on interoperability and collaborating closely with Sam. Sachin provides context on the Postman-Salesforce partnership, including their interactions at TDX, meetings with various Salesforce team members, and the parallel development of features like agent boards and MCP generation.
+
+Postman-Salesforce Partnership
+* Daryl introduces himself as a product director at Salesforce, working on interoperability and collaborating closely with Sam. Sachin provides context on the Postman-Salesforce partnership, including their interactions at TDX, meetings with various Salesforce team members, and the parallel development of features like agent boards and MCP generation.
+* Daryl shares a deck and asks if the group has seen the diagram before, which Sachin confirms they saw at TDX.
+
+Salesforce's Plans
+* Daryl provided an overview of Salesforce's plans to support the Google protocol (A2A) and the MCP protocol. Salesforce plans to have an MCP client integrated within Agent Force as an out-of-the-box feature, which will allow customers to use their own MCP servers.
+* This MCP client integration is planned to be piloted around the Dreamforce timeframe, while the A2A support will be piloted around Dreamforce and then generally available a couple of months later. Salesforce also plans to develop a command center, gateway, and agent exchange to manage the discovery, registration, testing, supervision, and publishing of these external agents.
+* Brian observed that Salesforce seems to be treating agents similar to how Postman treats APIs, and Daryl acknowledged the analogy but noted that agents are more autonomous and have more guardrails compared to traditional APIs.
+
+Postman's Capabilities
+* Sachin mentioned that Postman has seen similar protocols or "agents" that can be called upon on their exchange, and that there are many potential use cases where Postman's APIs and Salesforce's agents can work together. Sachin also noted that the industry can change rapidly, and they are curious to see how the agent lifecycle and SKPs evolve over the next six months.
+* Daryl asked Sachin to repeat his question regarding the shared model of connecting the exchanges or ecosystems.
+* Sachin inquired about Salesforce's perspective on how AI is transforming in the next six months and whether there is value in building a Salesforce-like agent that can be hosted on Postman and vice versa. Daryl responded that their bets are on interoperability and voice as key focus areas for their AI and agent offerings.
+* He mentioned that they could explore the agent integration idea on a use case basis.
+* Sachin suggested focusing on one or two use cases initially to clarify the integration approach. He sees this as a way for users and developers to purchase workflows or agents to solve specific problems.
+* Daryl acknowledged the need to further discuss the use case details.
+
+Integrating Postman and Salesforce
+* Noah had additional questions, and Ian asked about how Salesforce agents can access data outside the Salesforce platform, such as through APIs and data integration tools like MuleSoft.
+* Daryl explained that Salesforce wants to be open and extensible, allowing agents to leverage the latest technologies and protocols for data access, including options like Data Cloud and MuleSoft.
+
+Postman's Flows and MCP
+* Sachin introduced Roger, who leads Postman's Flows feature and the latest developments on the Mutual Connectivity Protocol (MCP), to provide more context on the interoperability aspects.
+* Noah expressed interest in exploring partnership opportunities with Salesforce, and Daryl agreed to have that conversation, involving additional stakeholders as needed.
+* Noah offered to provide more details on Postman's products and capabilities, and Daryl confirmed his familiarity with Postman's offerings.
+* Noah explains that Postman operates a network with APIs from over 18,000 companies, including Salesforce. Postman has built an MCP (Microservices Control Plane) server generator on top of this network, allowing users to build their own bespoke MCP servers in just a few minutes.
+* Postman also has an MCP catalog, where the same companies distributing their APIs on the network are now also distributing their MCP servers.
+* Noah demonstrates the MCP server view on Postman's API network, showing that companies like PayPal have their MCP servers listed alongside their other APIs. Postman's built-in client allows users to directly connect to these MCP servers, with the advantage that Postman has verified the companies and established a trust model.
+* Noah explains that the value proposition is that users don't have to worry about the authenticity of the MCP servers, as Postman has already verified the companies. He then shows Daryl the MCP server generator, where users can go through their own APIs, add them, and generate an MCP server that can be immediately downloaded and used, whether for an MCP client or an agent.
+* Noah suggests that from a registration perspective, Postman can act as an "MCP spigot", providing a simple way for users to access verified MCP servers. He clarifies that the current implementation is a one-to-one mapping between the API and the tool, but the vision is to allow users to wrap multiple APIs in a flow and compose their tools more thoughtfully.
+
+Partnership Opportunities
+* Noah discusses the high usage of a particular feature, which is a Minimum Commercially Viable Solution (MCVS) that is frequently used by developers, generating thousands of instances every month. Daryl expresses amazement at this information, and Noah suggests that this could be a partnership opportunity, as developers would need tools to access this feature, which Postman could potentially provide.
+* Daryl inquires if Postman has an existing business development or partnership team that they could work with on this opportunity. Sachin explains that while there is an account team trying to sell to Postman, there is no dedicated partnership team yet.
+* Daryl expresses support for the idea and suggests that Sachin reach out to Postman's representative to further explore the partnership potential.
+* Noah mentions that Postman is having similar conversations with other companies in the space and adjacent spaces, with varying timelines. He notes that while Postman is tracking the API network (A2A) space, they are currently more focused on the MCVS market, which they believe is where the current developer adoption is concentrated.
+* Daryl informs Noah that Salesforce is planning to run a pilot on the MCVS feature soon and invites Postman to participate in the pilot. Sachin suggests involving additional Postman team members, such as Sam and Gary, to coordinate the partnership efforts.
+* Daryl and the Postman team, including Noah, Sachin, and Ian, discuss the logistics of their potential collaboration, including the possibility of meeting in person since they are all based in the New York area. Daryl requests that Postman follow up with him regarding the partnership opportunity.
+* Brian mentions that Postman had reached out to the Salesforce partnership team about a month or two ago, but they didn't actively pursue it due to the complexity of the process. Daryl suggests that Brian reach out to Tyler Carlson, who is on the partner side, to help move the process along.
+* Brian confirms that Tyler is on the partner side and Daryl provides his contact information.
+* Brian mentions that Postman was also referred to someone named Carla Pola, who seems to be in the partnership space, and he plans to reach out to her as well. Daryl is not familiar with Carla but suggests that Postman will eventually connect with the right person.
+* Brian and Daryl express their excitement about working together, and Daryl mentions that he will get back to Brian soon about the pilot. The call ends with Sachin and Noah thanking Daryl for his time.

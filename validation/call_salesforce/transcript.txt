@@ -1,0 +1,388 @@
+Salesforce | Postman MCP Support Sync
+
+Sachin Khalsa with Salesforce
+Recorded on Jun 17, 2025 via Zoom, 26m
+
+
+
+Participants
+
+Postman
+Sachin Khalsa, Enterprise Customer Success Manager
+Noah Schwartz, Head of Product, API Network
+Brian Coons, Strategic Account Director
+Ian Cundiff, Strategic Solutions Engineer (East Coast)
+Rodric Rabbah, Head of Product, Flows
+
+Salesforce
+Daryl Martis, Director, Product Management Einstein Ai
+
+
+
+Transcript
+
+0:00 | Brian
+can you hear crying in the background right now? 
+
+0:03 | Sachin
+I can't no. 
+
+0:05 | Brian
+Okay, good. 
+
+0:06 | Ian
+You're good to go. 
+
+0:07 | Brian
+Because there is. 
+
+0:10 | Ian
+Oh man. 
+
+0:24 | Sachin
+Yes, sir. 
+
+0:47 | Brian
+Nice. 
+
+0:53 | Daryl
+Alright. Can you hear me? 
+
+0:54 | Sachin
+Hey, Daryl. 
+
+0:56 | Daryl
+Hi, nice to meet you. 
+
+0:59 | Sachin
+Likewise. How's your, I'm already forgetting what day it is, how's your Tuesday? 
+
+1:03 | Daryl
+Yeah, it's great. How's your day going? 
+
+1:07 | Sachin
+Not so bad almost at the end of it, which is for what it's worth, not the worst day, but. 
+
+1:14 | Daryl
+I'm. 
+
+1:14 | Sachin
+getting married this Saturday. So, I jump right into wedding planning as soon as we're done. 
+
+1:18 | Daryl
+You're getting married this Saturday? Yes, sir. Oh, wow, dude. Like, yeah, that's congratulations. That's amazing. 
+
+1:27 | Sachin
+Yeah, it came on quick. And now, my fiancé has just been like, can you take care of these 12 or so things for us today, I? 
+
+1:34 | Brian
+Was going to say, I can't believe you're working this close to it. 
+
+1:36 | Sachin
+Yeah, me, neither man. Well, listen, let me make sure that we can get, of course, the people that we needed today are both sick. Let me make sure we can get close to them… Daryl a little quickly. I know you were added in late based on Sam and Gary's unavailability, but maybe we can do a quick round of introductions. Sure. Brian, you want to get us started here while I reach out to Rodric. 
+
+2:08 | Brian
+Yeah, sure. Yeah. So, Daryl, great to be in touch with you from our side. I think you probably already know a little bit about Sachin, but he's with our customer success team here at postman. And then I've got Ian from our solutions engineering team, and then myself, I'm on the accounts team here at postman. So the three of us kind of head up the support of the postman Salesforce relationship. So, we work with a ton of different business units and functions across Salesforce. Yeah. So I think that's a good primer if you don't mind walking us through a little bit about your role? 
+
+2:42 | Daryl
+Sure. Yeah. Well, first quick question, is it postman? Because I've been calling it postman the entire time. Is it postman or post? Ah. 
+
+2:50 | Brian
+good question. So postman is acceptable? I mean, we've actually gone through this. We got trained on it at one point like four or five years ago. 
+
+3:02 | Daryl
+Okay. 
+
+3:02 | Brian
+But then one of our founders actually came out and was like I actually say it the other way. So postman or postman is acceptable. I usually say when I like work at postman… it's more of the men. And then if I'm using the application, it's postman. So, okay, nice. Yes, but either is acceptable. 
+
+3:22 | Daryl
+Right. Cool. Well, thanks for clarifying that a little bit about me. My name is Gerald Martis. I'm a product director here at Salesforce working on a few different items including on interoperability, working with Sam very closely on this. And, yeah, and I'm based out of New York. How much about the interoperability do you know about here? Have you had a meeting with Sam and Gary before on this or? 
+
+3:52 | Sachin
+Maybe I can give some context to how we came in touch with them. So, Ian and I, a little while ago, we were at tdx, the three of us collectively have been Salesforce's partner for the last few years here at pokeman… pretty strong partnership. You guys are number one in our public network. You guys have been crushing it in terms of exposing apis… following our meeting at tdx. We met out dying glass. We were really closely with Chris Harrison. Yeah, we still need a number of people on your extensive product team. We met with ice reed, shipra, Gary brandelier, who I don't think is with Salesforce anymore. Yeah. 
+
+4:30 | Daryl
+He's going to Google. Yeah, yeah, quickly. 
+
+4:32 | Sachin
+You know, some great work and then left the jump ship. But like all day, like we've been building a lot of great, very similar features together. You guys have agent boards. We have agent building. We just started building MCP as a generation tool. We're now thinking about how can we start to expose that internally to different customers that want to build and, you know, turn their apis into internal agents and workflows. So, a lot of what we're seeing is how such great parallel streams there's a perfect world where we're the interoperability or the combined network and ecosystems are starting to, you know, talk to each other. How can we get them to talk to each other and in conversations with shipra and some of the other folks, they put us in touch with, Gary put us in touch with you and so fast forward that's where we are today? 
+
+5:26 | Daryl
+Yep. Perfect. Okay. Let me share, let me share what, let me share a deck that I have and, you know, we can walk through a little bit about this as well. Let me know when you can see it. Yep. 
+
+5:43 | Brian
+Perfect. Okay. 
+
+5:44 | Daryl
+So, have you seen this diagram before? Yeah. 
+
+5:48 | Sachin
+We saw this at tdx? 
+
+5:50 | Daryl
+You did? Okay, perfect. Yeah. So essentially, just to give a quick overview here, we are going to have support for a to a, which is the Google protocol as well as the MCP protocol. So, what we're looking to do is that we're looking to have the sort of MCP client directly within agent force as out of the box, you can use today as a workaround. Mulesoft, for example, here, you can have a mulesoft server that, you know, can query objects across maybe different apis, things like that. But if you have your own MCP server, we're looking to pilot an MCP client as out of the box within our side. And from that, what will happen is that, you know, we'll look to GA, this around reinforce time frame in parallel. We're going to have a to a support within agent force out of the box. And that will be, that will be let's say… something that will probably pilot around dreamforce center. And then we'll GA, at the, a couple of months after. So, what we are looking to do in addition to that is have this sort of command center over here and a gateway and an agent exchange. All right. So you can think about it as the gateway being okay, you know, you register your agents, you can discover the different types of external agents that are available. And you can have this sort of command center, to overview all of the different things that are happening. And this follows our kind of multi agent life cycle where you discover like I mentioned through the agent exchange, you register your MCP servers on a per term and centralized registry here. With gateway, you build test uses the regular stuff that you have with agent force. You can supervise with a command center and you can publish. Let's say you have your agents here. You can publish that, via the gateway agent force, gateway questions so far? 
+
+7:48 | Sachin
+Really quick as you're explaining we had another colleague of ours join. No, Schwartz, he leads up our public network team and has been working hand in hand with the leap and some of the other Salesforce folks on just managing, the external Salesforce API page. 
+
+8:04 | Daryl
+Yeah. Nice… to meet you. 
+
+8:07 | Noah
+Daryl, I'm super. Sorry. I'm late. No problem. There's there's no good excuse for being late to a meeting especially with a customer. I was tied up with our CEO. So I just didn't really have a choice, no. 
+
+8:17 | Daryl
+Problem. So. 
+
+8:22 | Brian
+So, I guess Daryl one, one observation, just as you go through this, we have really similar slides about how apis are treated within postman and, you know, about the life cycle. It almost looks like you guys are treating agents a lot like apis, is that kind of a fair observation? 
+
+8:45 | Daryl
+Agents as apis. In a sense, you can think of them as being analogous to each other in a certain sense. But I wouldn't say that's completely, you know, like agents are an evolution. It's multi, you know, it's more autonomous. It's more kind of like multi, you know, like a multi conversation back and forth with each other, right? They can, they can, there's more guard rails around it as well. But you don't necessarily need to start programming with regards to an API. Does that make sense? Yeah. 
+
+9:16 | Brian
+No, that does. Yeah. 
+
+9:20 | Sachin
+One of the, one of the things that I think has been really promising is, and to Brian's point, we've seen very similar. And this is how we also echo the same when we are talking about building and hosting apis with the agent exchange. This is something that actually with my team, I think Noah's quite familiar with this, that it makes perfect sense that postman has a similar protocol or agent of sorts that can be called upon on your exchange and vice versa, right? Sales where the API is living as an either an MCP or as its own agent. Posted on our auto. There's plenty of workloads that we can start to build together and show cases of where these two are talking to each other to perform an activity or an action. And it's actually one of the talks that we're aiming to do at dreamforce and gosh, your guys's submission requirements were ridiculous, may make 30 birds from October. 
+
+10:19 | Daryl
+Yeah. It was pretty early this year, yeah. 
+
+10:22 | Sachin
+That said a lot. I think one of the things that we were sharing with Philippe and some other contacts is a lot can change in six months, right? We can all this all of a sudden, see a different side of the industry that comes in and starts to transform what the small the agent life cycle looks like. What skps end up becoming? You name it curious what you guys are seeing and curious if you think it makes sense that we have this kind of shared model of connecting the exchanges or ecosystems? 
+
+10:53 | Daryl
+Sorry, can you repeat that with regards to your question? Yeah. 
+
+10:57 | Sachin
+Yeah. First question is curious what you guys are seeing in terms of how AI is transforming over the next six months, which you guys are, because where are you putting your chips? And then the follow up to that, which was my first point, curious if you see value in building a Salesforce type of, I guess agent that can be hosted on the postman side as well and vice versa with us postman listing and servicing an agent that's listed. 
+
+11:25 | Daryl
+On the agent? Yeah, I think our bets essentially are interoperability and voice is like a big thing where our customers want to interact. So I would say with regards to our AI offerings and agentic offerings that's where it's going number two. I can see our agents essentially being a part of like, you know, if you're going to have a platform with separate agents or multiple different agents that you want. Yeah, I can see that. I can see that, but it would have to be on a use case basis. You know? Yeah, we'll have to dig into that a little. 
+
+12:01 | Noah
+further. 
+
+12:02 | Daryl
+No. 
+
+12:03 | Sachin
+For sure. And I would like to include a few others on our side on just that use case clarification, if we can focus on one or two to start and see where it goes from there. I think that'd be really valuable… but ultimately, we see this as also as a way, for users and developers to also, you know, start to purchase workflows or purchase agents that can model a behavior that they're trying to solve for, I mean, that's the eventual goal but also like how do we get there? And how do we start finding or tackling the biggest Fish in that case. 
+
+12:39 | Daryl
+Noah. 
+
+12:41 | Sachin
+Ian, any questions, anything about him? 
+
+12:43 | Noah
+I have a bunch of questions but I, some of them may have been answered before. So I don't know Ian, I can go after you. Yeah. 
+
+12:51 | Ian
+The only thing I was wondering is just, I think it might have been kind of about like a couple slides back, but I guess, how are you thinking about like say agents, like built, you know, like agent force agents, like accessing data outside. Is it, it's primarily through like what we're seeing here like a to a and then, and MCP, like those that's like, the main idea if the data is not within the Salesforce platform? Yeah? 
+
+13:20 | Daryl
+I think ideally, I mean, there's many different ways you can do it. You can bring in data externally via data cloud, you know, zero copy, let's say from different lakes that's one way you can use MuleSoft to bring in data using apis that's another way. But we want to be open and extensible. So, we want to go and have a platform that is using the latest and greatest. And from an agent speaking to another agent, it looks like everyone is converging on these two protocols. So that's why I want to have it. We want to be extensible. 
+
+13:55 | Sachin
+As you were talking, I had another folk join us. So we have Roger who leads up our flows feature as well as like our latest on MCP. 
+
+14:04 | Daryl
+Nice to meet you. 
+
+14:05 | Sachin
+Roger has been leading the way in describing what their interoperability looks like. 
+
+14:12 | Noah
+Hey, Daryl. Is it okay if I ask you a couple of questions or? Yeah, yeah. 
+
+14:15 | Daryl
+Go ahead, you. 
+
+14:16 | Noah
+Know, you're do you have anything else? No? 
+
+14:19 | Ian
+No, no, go ahead. 
+
+14:20 | Daryl
+Okay. So. 
+
+14:21 | Noah
+It's impossible for me to look at these slides and not just immediately start thinking about where we can partner, you know, is that a conversation we can have now? 
+
+14:29 | Daryl
+We can have that now. I think we'll also need to, you know, dig into that with a few other people as well, but I think we can start that conversation right now. 
+
+14:37 | Noah
+Okay. Roger's, definitely gonna have his own angles. I don't know if it's possible to share these slides after, but it, there was a different slide that we were just on before it had like the build test use. Yes. Before that, there was discover register. Yeah. So I don't know how familiar you are with what we've built here at postman, I could show it to you, but it's just also sort of like quickly verbally at a high level. You're familiar with our products of. 
+
+15:03 | Daryl
+Course. Yeah, I've used your product, yeah. 
+
+15:04 | Noah
+Okay. You've used the product. Yeah, from a public API perspective, we operate this network with apis from more than 18,000 companies including your own. What we've built on top of that is an MCP server generator. Okay, any of those apis on the network, you can build your own bespoke MCP server. Whole thing takes like just a few minutes. It's it's pretty awesome. And then we also have an MCP catalog. So those same companies who are distributing their apis on the network already, MCP is just another type of API. So they're beginning to, they're distributing their MCP servers through the same network. And so when I look at this slide especially, I think it would be under register. What we have here. Under register. We're talking to other companies about, we have an API for our public catalog, and we're talking to other companies about integrating our API into wherever they're exposing MCP servers. So if you have an agent, an agent's able to connect up to MCP servers. Yeah, we're essentially like a spigot for the world's set of official MCP servers. So rather than managing like hundreds of relationships, you can just take that off from our network. I think, the other angle to consider in addition to public apis is the private apis that we have obviously people doing their design for their internal apis on postman, those apis being useful in any kind of agentic workflow those are being exposed by as MCP servers internally, at many of our customers, seems like another opportunity for us to hook up again. I think also under the register piece, there's probably more here, but that seems like a pretty meaty place for me to start. 
+
+16:52 | Daryl
+So, are you looking to create something like an agent exchange idea where, you know, everyone has their MCP servers that are searchable within, you know, postman marketplace or whatever you want to call it. Let. 
+
+17:06 | Noah
+Me just show you the product. Sure, just easiest, I can't yeah, sure. Thanks. No problem. Let me show you. Let me show you first the servers. So if you've exposed them before you're probably familiar with this view right now. You're looking I'm on our API network. Like I said, you have apis from some of the most, you know, well known companies in the world here, including Salesforce, and a type of API that can be distributed is of course MCP server. So, paypal for instance, alongside all their other apis on the network, they have their MCP server listed. And then we have a built in client that you can just directly connect to. We can go through this oauth flow. I'm not going to do it here, but you can kind of take my word for it that it works. Okay. The value here is that we already work with all of these companies and they're verified on our network like verified as in, we know they are who they say they are. So there's a trust model established there. And what we've been seeing with other partners and with our customers is that, you know, not having to worry about, is this the real MCP server or is this the some community MCP server? 
+
+18:19 | Daryl
+You. 
+
+18:19 | Noah
+want to know like who wrote the code and where it's being executed is incredibly valuable. So… that's we're seeing value for anyone with an MCB client all the way to people running an agent exchange like yours, where people are going to want to hook up MCP servers to their agents. 
+
+18:37 | Daryl
+Gotcha. 
+
+18:38 | Noah
+I don't know if that made any sense. And then, the other thing I was talking about before is our server generator. Obviously, I was hanging because I didn't finish the oauth flow where you can actually just like do this with your own apis? 
+
+18:58 | Noah
+Go through any of your apis, add them, generate an MCP server. You can download the payload and you can run it immediately, hook it up to an MCP client, hook it up to an agent, wherever you want an MCP server. I think, wow, you get the idea. So I think from like a registration perspective, there's a lot of, I… mean, there's no simpler way to put it. Like we can just, we can be like an MCP spigot for you. 
+
+19:24 | Daryl
+This is actually very interesting. So you can just generate a MCP server this way, yeah. 
+
+19:29 | Noah
+Yeah, and. 
+
+19:31 | Daryl
+These apis. Well, these would be like resources within the MCP or tools essentially, right? 
+
+19:36 | Noah
+Right now, it's a one to one mapping between the API and the tool. 
+
+19:40 | Daryl
+Where. 
+
+19:41 | Noah
+Roger just joined and we're under NDA, right? So it's like it's okay to share all this stuff. 
+
+19:45 | Daryl
+Sure. Yeah. 
+
+19:46 | Noah
+Our flows product is a, I don't know if you've used it, it's like a low code or no code canvas, for building workflows, applications, agents around apis, gotcha. 
+
+19:55 | Daryl
+So, 
+
+19:56 | Noah
+part of the vision here is you go beyond a one to one mapping between the API and the tool. You can wrap multiple apis in a flow so you can start like composing your tools much more thoughtfully. 
+
+20:07 | Daryl
+I see. 
+
+20:09 | Noah
+We're seeing a lot of usage on this particular features. You know, it's a MCB's talked about a lot, but it's a pretty small space for people development. I'm sure. You know, yeah, we're seeing thousands and thousands of these generated every month by developers. 
+
+20:25 | Daryl
+This is amazing. So. 
+
+20:26 | Noah
+Wow. It seems like a partnership opportunity. In my opinion. If you're if you're building an agent exchange, where are the developers going to get the tools? They're going to want to bring them in some way? I think it makes sense for them to come from postman? 
+
+20:40 | Daryl
+Yeah. Is there a, is there someone that you're working with on our business development team or partnership team? Because I'm with the guys we have. 
+
+20:50 | Sachin
+an account team that, you know, they're trying to sell them to postman? Of course, if you partner with them, but, no one on the partnership team yet. Okay, the isv angle while it exists, I think there are, what we wanted to do is just scope like what could we do right before we go down? Yeah, actual like eventual like what is pricing and packaging? We're not there. 
+
+21:12 | Daryl
+I think this is definitely a way we can partner if you can reach out, to the, if you can reach out, to your rep and, they can help connect the dots. I mean, I can talk to them as well and, you know, I'm in support of this. So I think this is definitely something that we can work closely on. Cool. Yeah, we will need, the backing of the partnership team and, you know, like, but yeah, I think this is definitely something that, we can kind of, you know, work together on, so. 
+
+21:47 | Noah
+Yeah, we're having this conversation, with you could imagine which other companies, you know, who's operating in the space and adjacent spaces. So, we're having this conversation with a bunch of other companies. Timelines are like, some of them are a little faster, than. I think what I heard from you, some of them are pretty similar. It kind of depends on the company, but, yeah, it would be great to move that forward. Are you? 
+
+22:07 | Daryl
+Looking at a to a as well in any way? 
+
+22:11 | Noah
+That's a good question. So, we're definitely tracking it. I don't know. Roger probably has a more thoughtful perspective here than me… as it relates to the API network. It's not something we're actively investing in now, tracking it. It seems very important, but also, you know, we're kind of going where the adoption is. We're you know, we're a dev tools company. We follow the developer, of course, developer adoptions, obviously, like, yeah, we're heavily concentrated in MCP and not a to a, I think we're going to need things like a to a, but I think it's way ahead of where the maturity of the market is right now. 
+
+22:48 | Daryl
+Gotcha. Yeah, I think definitely, we can, I mean, you know, we're going to have a pilot soon on MCP. So, I think this is definitely a way for us to work together. I will reach out to you about, you know, if you're looking to pilot with us, I think this is definitely a way for us to test a few things, but I would say with regards to a partnership and isv partnership perspective, I would say you… should definitely reach out to us, yeah, the rep and they can then connect a few things. But essentially, from our side, we're running this pilot, if you're interested in also working with us on the pilot, that would be great for us. 
+
+23:30 | Noah
+Yeah, totally. 
+
+23:32 | Daryl
+Okay. Yeah, you. 
+
+23:32 | Sachin
+Got the right people on the call. Rodric and Noah lead up that entire initiative. So, I know we would probably want to have a couple of follow ups with Sam and Gary. So, more than happy to start to coordinate the pieces together. 
+
+23:45 | Daryl
+Okay. Sounds great. I will note this down on my sheet over here and, you know, to reach out to you soon about this. We're starting the pilot soon. So, this is definitely on the, MC, on the mcpn, not the a to a, okay, cool. 
+
+24:05 | Daryl
+And, 
+
+24:07 | Ian
+Daryl, did you say you're based in New York? I am. Yeah, cool. Yeah. So, yeah. So, me, Sachin, and Noah and, Rodric? 
+
+24:17 | Noah
+Are you, are you? Yeah, you're awesome. 
+
+24:19 | Sachin
+Yeah. 
+
+24:20 | Ian
+Okay. Yeah. So, we're all, most of us are around, so. 
+
+24:24 | Daryl
+Okay. That's easy, makes it easy. All right. Cool. So, I will reach out to you about that. And with regards to our partnership opportunity, you know, rub me into, rub me into an email or anything that, you know, whatever, whatever's easiest for you? 
+
+24:38 | Brian
+Yeah. Darryl, I'll do that for sure. We're we got in touch with the partnership team maybe like a month or two ago, and just based on past experience, you know, we know, it's a big undertaking and a very big machine on the Salesforce side. So, without kind of like a concrete path to follow although it seems like now we have, you know, one that would be super appealing. We didn't really pursue it. So we'll get that ball rolling. Do you know anyone on that team or like, would it be helpful to pass a name over to you? That might be just so you could maybe connect the dots and help us kind of move it along? 
+
+25:13 | Daryl
+I don't know who it would necessarily be. I know there's quite a few people, 
+
+25:20 | Sachin
+Let. 
+
+25:21 | Daryl
+Me see, ask them to, ask them to, you know, ask the rep to reach out to, this person, let's see… tell them to reach out to, Tyler, Carlson, T y LERC a RLS o N. 
+
+25:51 | Brian
+Okay, great. Is Tyler on the partner side of things? 
+
+25:55 | Daryl
+Yes, he is. Okay. 
+
+25:56 | Brian
+Cool. 
+
+25:57 | Daryl
+I just put his name in here. So, yeah. 
+
+25:59 | Brian
+Oh, perfect. Thank you so much. Yeah, we'll do, so, I will do that this week. We got referred to someone named I'm going to butcher her first name. I'm not quite sure how to pronounce it. I think it's Carla Pola, she looks like she's in the partnership space, so, we'll reach out to her and give her a quick summary and see what we can do. 
+
+26:19 | Daryl
+I don't think I've heard of Carla, but maybe she's the right person. I'm not sure. But, yeah, I mean, there's quite a few people around eventually. You'll end up with the right person. So. 
+
+26:27 | Brian
+Yeah, yeah, yeah, for sure. Makes sense. 
+
+26:31 | Daryl
+Great. All right. Well, yeah, looking forward to working with you and we'll, I'll get back to you soon about this pilot. 
+
+26:39 | Noah
+Great meeting you. 
+
+26:40 | Sachin
+Thanks for the time and yeah, some very exciting steps ahead, thank. 
+
+26:43 | Daryl
+You very much appreciate it guys. Thank you. Talk to you soon bye. 
+
+26:45 | Brian
+Thanks everyone. 

@@ -1,0 +1,19 @@
+Interaction Stats
+whisper
+All your interaction metrics are within industry best practice
+
+Talk Ratio
+25%
+Within range
+Longest Monologue
+58sec
+Within range
+Longest Customer Story
+2:13min
+Within range
+Interactivity
+7.9
+Within range
+Patience
+1.03secs
+Within range

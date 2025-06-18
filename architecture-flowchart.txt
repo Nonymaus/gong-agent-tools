@@ -1,0 +1,147 @@
+GONG AGENT ARCHITECTURE FLOWCHART
+==================================
+
+┌─────────────┐
+│ User Request│
+└─────┬───────┘
+      │
+      ▼
+┌─────────────────┐    No    ┌─────────────────────┐
+│Session Available├─────────►│Session Capture Req'd│
+└─────┬───────────┘          └─────┬───────────────┘
+      │Yes                         │
+      ▼                            ▼
+┌─────────────┐                ┌─────────────────┐
+│Validate     │                │Browser Navigation│
+│Session      │                └─────┬───────────┘
+└─────┬───────┘                      │
+      │                              ▼
+      ▼                          ┌─────────────┐
+┌─────────────┐    No            │HAR Capture  │
+│Session Valid├─────────┐        └─────┬───────┘
+└─────┬───────┘         │              │
+      │Yes              │              ▼
+      ▼                 │        ┌─────────────────┐
+┌─────────────────┐     │        │Extract JWT      │
+│Initialize API   │     │        │Tokens           │
+│Client           │     │        └─────┬───────────┘
+└─────┬───────────┘     │              │
+      │                 │              ▼
+      ▼                 │        ┌─────────────────┐
+┌─────────────────┐     │        │Extract Session  │
+│Determine Request│     │        │Cookies          │
+│Type             │     │        └─────┬───────────┘
+└─────┬───────────┘     │              │
+      │                 │              ▼
+      ▼                 │        ┌─────────────────┐
+┌─────────────────┐     │        │Validate         │
+│Data Type?       │     │        │Artifacts        │
+└─────┬───────────┘     │        └─────┬───────────┘
+      │                 │              │
+      ├─Calls───────────┼──────────────┘
+      ├─Conversations   │
+      ├─Users           │
+      ├─Deals           │
+      ├─Library         │
+      ├─Stats           │
+      └─All             │
+      │                 │
+      ▼                 │
+┌─────────────────┐     │
+│Extract Data via │     │
+│Appropriate API  │     │
+└─────┬───────────┘     │
+      │                 │
+      ▼                 │
+┌─────────────────┐     │
+│Process Data     │     │
+│(Type-specific)  │     │
+└─────┬───────────┘     │
+      │                 │
+      ▼                 │
+┌─────────────────┐     │
+│Apply Data Models│     │
+└─────┬───────────┘     │
+      │                 │
+      ▼                 │
+┌─────────────────┐     │
+│Pydantic         │     │
+│Validation       │     │
+└─────┬───────────┘     │
+      │                 │
+      ▼                 │
+┌─────────────────┐ No  │
+│Validation Pass? ├─────┼─────┐
+└─────┬───────────┘     │     │
+      │Yes              │     ▼
+      ▼                 │ ┌─────────────────┐
+┌─────────────────┐     │ │Data Quality     │
+│Transform to     │     │ │Error            │
+│Standard Format  │     │ └─────┬───────────┘
+└─────┬───────────┘     │       │
+      │                 │       ▼
+      ▼                 │ ┌─────────────────┐
+┌─────────────────┐     │ │Error Handling   │
+│Generate Content │     │ └─────┬───────────┘
+│Fields           │     │       │
+└─────┬───────────┘     │       ▼
+      │                 │ ┌─────────────────┐
+      ▼                 │ │Retry Logic      │
+┌─────────────────┐     │ └─────┬───────────┘
+│Return Structured│     │       │
+│Data             │     │       ▼
+└─────┬───────────┘     │ ┌─────────────────┐
+      │                 │ │Retry Available? │
+      ▼                 │ └─────┬───────────┘
+┌─────────────────┐     │       │Yes
+│Validation       │     │       └─────────────┐
+│Framework        │     │                     │
+└─────┬───────────┘     │                     │
+      │                 │                     │
+      ▼                 │ ┌─────────────────┐ │
+┌─────────────────┐     │ │Session Expired  │ │
+│Load Ground Truth│     └►└─────────────────┘ │
+└─────┬───────────┘                           │
+      │                                       │
+      ▼                                       │
+┌─────────────────┐                           │
+│Field-by-Field   │                           │
+│Comparison       │                           │
+└─────┬───────────┘                           │
+      │                                       │
+      ▼                                       │
+┌─────────────────┐                           │
+│Calculate        │                           │
+│Accuracy         │                           │
+└─────┬───────────┘                           │
+      │                                       │
+      ▼                                       │
+┌─────────────────┐ No                        │
+│Accuracy >= 95%? ├─────────┐                 │
+└─────┬───────────┘         │                 │
+      │Yes                  ▼                 │
+      ▼               ┌─────────────────┐     │
+┌─────────────────┐   │Validation Failed│     │
+│Production Ready │   └─────────────────┘     │
+└─────────────────┘                           │
+                                              │
+                                              │
+                    ┌─────────────────┐       │
+                    │Final Error      │◄──────┘
+                    └─────────────────┘
+
+LEGEND:
+=======
+┌─┐ Process/Action
+├─┤ Decision Point  
+▼   Flow Direction
+│   Connection Line
+
+KEY COMPONENTS:
+===============
+1. Session Management: HAR-based capture and validation
+2. API Client: Multi-endpoint data extraction
+3. Data Processing: Pydantic models and validation
+4. Validation Framework: Ground truth comparison
+5. Error Handling: Retry logic and session refresh
+6. Production Readiness: 95% accuracy requirement

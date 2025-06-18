@@ -1,0 +1,276 @@
+2025-06-16 20:43:48,146 - INFO - 🚀 Starting Gong Toolkit Production Functionality Tests
+2025-06-16 20:43:48,146 - INFO - ================================================================================
+2025-06-16 20:43:48,146 - INFO - 🔍 Checking Production Test Prerequisites
+2025-06-16 20:43:48,154 - INFO -   ✓ HAR analysis file found with artifacts
+2025-06-16 20:43:48,637 - INFO -   ✓ Gong toolkit modules importable
+2025-06-16 20:43:48,732 - INFO -   ✓ Test environment ready
+2025-06-16 20:43:48,733 - INFO - 
+📊 Prerequisites Status: 3/3 ready
+2025-06-16 20:43:48,733 - INFO - ✅ All prerequisites met - ready for production testing
+2025-06-16 20:43:48,733 - INFO - 
+🔐 Running Production Authentication Test
+2025-06-16 20:43:48,740 - INFO - Extracting Gong session from analysis data
+2025-06-16 20:43:48,743 - INFO - Successfully extracted Gong session from artifacts for jared.boynton@postman.com
+2025-06-16 20:43:48,743 - INFO - ✅ Authentication test passed:
+2025-06-16 20:43:48,743 - INFO -   User: jared.boynton@postman.com
+2025-06-16 20:43:48,743 - INFO -   Cell: us-14496
+2025-06-16 20:43:48,743 - INFO -   Tokens: 4
+2025-06-16 20:43:48,746 - INFO - 
+🌐 Running Production API Test
+2025-06-16 20:43:48,762 - INFO - Extracting Gong session from analysis data
+2025-06-16 20:43:48,763 - INFO - Successfully extracted Gong session from artifacts for jared.boynton@postman.com
+2025-06-16 20:43:48,763 - INFO - Gong API client initialized
+2025-06-16 20:43:48,763 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:48,763 - INFO - Testing API connection status
+2025-06-16 20:43:48,763 - ERROR - API connection status check failed: 'GongAPIClient' object has no attribute 'base_url'
+2025-06-16 20:43:48,763 - ERROR - ❌ API test failed: Connection not established
+2025-06-16 20:43:48,764 - INFO - 
+📊 Running Production Data Extraction Test
+2025-06-16 20:43:48,764 - INFO - Gong API client initialized
+2025-06-16 20:43:48,764 - INFO - Gong agent initialized
+2025-06-16 20:43:48,764 - INFO - Extracting Gong session from analysis: /Users/jared.boynton@postman.com/CS-Ascension/app_backend/agent_tools/_godcapture/data/gong-multitab-capture/analysis/godcapture_analysis.json
+2025-06-16 20:43:48,796 - INFO - Successfully extracted Gong session from analysis for jared.boynton@postman.com
+2025-06-16 20:43:48,797 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:48,797 - INFO - Session set for Gong agent: jared.boynton@postman.com
+2025-06-16 20:43:48,797 - INFO - Testing API connection
+2025-06-16 20:43:48,797 - INFO - Testing API connection status
+2025-06-16 20:43:48,797 - ERROR - API connection status check failed: 'GongAPIClient' object has no attribute 'base_url'
+2025-06-16 20:43:48,797 - ERROR - API connection test failed: 'GongAPIClient' object has no attribute 'base_url'
+2025-06-16 20:43:48,797 - ERROR - ❌ Extraction test failed: Agent connection failed
+2025-06-16 20:43:48,797 - INFO - 
+🧪 Running Full Production Test Suite
+2025-06-16 20:43:49,156 - INFO - 🔧 Configuring pytest for CS-Ascension project
+2025-06-16 20:43:49,182 - INFO - 🧪 Running test: test_production_authentication_functionality
+2025-06-16 20:43:49,183 - INFO - 🧪 Test environment configured
+2025-06-16 20:43:49,190 - INFO - 🔐 Testing Production Authentication Functionality
+2025-06-16 20:43:49,197 - INFO - Extracting Gong session from analysis data
+2025-06-16 20:43:49,198 - INFO - Successfully extracted Gong session from artifacts for jared.boynton@postman.com
+2025-06-16 20:43:49,198 - INFO - ✅ Production authentication functional test passed:
+2025-06-16 20:43:49,198 - INFO -   Session extracted: jared.boynton@postman.com
+2025-06-16 20:43:49,198 - INFO -   Cell ID: us-14496
+2025-06-16 20:43:49,198 - INFO -   Tokens: 4
+2025-06-16 20:43:49,198 - INFO -   Authentication time: 0.01s
+2025-06-16 20:43:49,199 - INFO - ✅ Completed test: test_production_authentication_functionality
+2025-06-16 20:43:49,199 - INFO - 
+📊 Production Test Results:
+2025-06-16 20:43:49,199 - INFO -   Total test time: 0.02s
+2025-06-16 20:43:49,199 - INFO -   Objects extracted: 0
+2025-06-16 20:43:49,199 - INFO -   Total records: 0
+2025-06-16 20:43:49,199 - INFO -   Success rate: 0.0%
+2025-06-16 20:43:49,199 - INFO -   Failed operations: 0
+2025-06-16 20:43:49,219 - INFO - 🧪 Running test: test_production_api_functionality
+2025-06-16 20:43:49,225 - INFO - 🌐 Testing Production API Functionality
+2025-06-16 20:43:49,225 - INFO - Gong API client initialized
+2025-06-16 20:43:49,232 - INFO - Extracting Gong session from analysis data
+2025-06-16 20:43:49,233 - INFO - Successfully extracted Gong session from artifacts for jared.boynton@postman.com
+2025-06-16 20:43:49,233 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:49,233 - INFO - Testing API connection status
+2025-06-16 20:43:49,233 - ERROR - API connection status check failed: 'GongAPIClient' object has no attribute 'base_url'
+2025-06-16 20:43:49,233 - ERROR - ❌ Production API functionality failed: Must connect to production Gong API
+assert False
+2025-06-16 20:43:49,270 - INFO - ✅ Completed test: test_production_api_functionality
+2025-06-16 20:43:49,270 - INFO - 
+📊 Production Test Results:
+2025-06-16 20:43:49,270 - INFO -   Total test time: 0.05s
+2025-06-16 20:43:49,270 - INFO -   Objects extracted: 0
+2025-06-16 20:43:49,271 - INFO -   Total records: 0
+2025-06-16 20:43:49,271 - INFO -   Success rate: 0.0%
+2025-06-16 20:43:49,271 - INFO -   Failed operations: 1
+2025-06-16 20:43:49,295 - INFO - 🧪 Running test: test_production_data_extraction_functionality
+2025-06-16 20:43:49,302 - INFO - 📊 Testing Production Data Extraction Functionality
+2025-06-16 20:43:49,302 - INFO - Gong API client initialized
+2025-06-16 20:43:49,302 - INFO - Gong agent initialized
+2025-06-16 20:43:49,302 - INFO - Extracting Gong session from analysis: /Users/jared.boynton@postman.com/CS-Ascension/app_backend/agent_tools/_godcapture/data/gong-multitab-capture/analysis/godcapture_analysis.json
+2025-06-16 20:43:49,309 - INFO - Successfully extracted Gong session from analysis for jared.boynton@postman.com
+2025-06-16 20:43:49,310 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:49,310 - INFO - Session set for Gong agent: jared.boynton@postman.com
+2025-06-16 20:43:49,310 - INFO - Testing API connection
+2025-06-16 20:43:49,310 - INFO - Testing API connection status
+2025-06-16 20:43:49,310 - ERROR - API connection status check failed: 'GongAPIClient' object has no attribute 'base_url'
+2025-06-16 20:43:49,310 - ERROR - API connection test failed: 'GongAPIClient' object has no attribute 'base_url'
+2025-06-16 20:43:49,310 - ERROR - ❌ Production data extraction functionality failed: Must connect to production Gong environment
+assert False
+2025-06-16 20:43:49,315 - INFO - ✅ Completed test: test_production_data_extraction_functionality
+2025-06-16 20:43:49,316 - INFO - 
+📊 Production Test Results:
+2025-06-16 20:43:49,316 - INFO -   Total test time: 0.02s
+2025-06-16 20:43:49,316 - INFO -   Objects extracted: 0
+2025-06-16 20:43:49,316 - INFO -   Total records: 0
+2025-06-16 20:43:49,316 - INFO -   Success rate: 0.0%
+2025-06-16 20:43:49,316 - INFO -   Failed operations: 1
+2025-06-16 20:43:49,335 - INFO - 🧪 Running test: test_production_performance_requirements
+2025-06-16 20:43:49,342 - INFO - ⚡ Testing Production Performance Requirements
+2025-06-16 20:43:49,342 - INFO - Gong API client initialized
+2025-06-16 20:43:49,342 - INFO - Gong agent initialized
+2025-06-16 20:43:49,342 - INFO - Extracting Gong session from analysis: /Users/jared.boynton@postman.com/CS-Ascension/app_backend/agent_tools/_godcapture/data/gong-multitab-capture/analysis/godcapture_analysis.json
+2025-06-16 20:43:49,349 - INFO - Successfully extracted Gong session from analysis for jared.boynton@postman.com
+2025-06-16 20:43:49,350 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:49,350 - INFO - Session set for Gong agent: jared.boynton@postman.com
+2025-06-16 20:43:49,350 - INFO - Starting quick extraction
+2025-06-16 20:43:49,350 - INFO - Starting comprehensive Gong data extraction
+2025-06-16 20:43:49,350 - INFO - Extracting calls data (limit=50)
+2025-06-16 20:43:49,350 - INFO - Fetching my calls (limit=50, offset=0)
+2025-06-16 20:43:49,651 - INFO - Authentication error in extract_calls, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:49,651 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:49,651 - INFO - Session refreshed for extract_calls, retrying...
+2025-06-16 20:43:49,651 - INFO - Fetching my calls (limit=50, offset=0)
+2025-06-16 20:43:49,724 - ERROR - Max retries exceeded for extract_calls
+2025-06-16 20:43:49,724 - ERROR - ❌ Calls extraction failed: extract_calls failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:49,724 - INFO - Extracting users data
+2025-06-16 20:43:49,725 - INFO - Fetching users
+2025-06-16 20:43:49,844 - INFO - Authentication error in extract_users, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:49,844 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:49,845 - INFO - Session refreshed for extract_users, retrying...
+2025-06-16 20:43:49,845 - INFO - Fetching users
+2025-06-16 20:43:49,931 - ERROR - Max retries exceeded for extract_users
+2025-06-16 20:43:49,931 - ERROR - ❌ Users extraction failed: extract_users failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:49,931 - INFO - Extracting deals data (limit=50)
+2025-06-16 20:43:49,931 - INFO - Fetching deals (limit=50, offset=0)
+2025-06-16 20:43:50,054 - INFO - Authentication error in extract_deals, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:50,056 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:50,057 - INFO - Session refreshed for extract_deals, retrying...
+2025-06-16 20:43:50,058 - INFO - Fetching deals (limit=50, offset=0)
+2025-06-16 20:43:50,151 - ERROR - Max retries exceeded for extract_deals
+2025-06-16 20:43:50,152 - ERROR - ❌ Deals extraction failed: extract_deals failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:50,152 - INFO - Extracting conversations data (limit=25)
+2025-06-16 20:43:50,152 - INFO - Fetching conversations (limit=25)
+2025-06-16 20:43:50,247 - INFO - Authentication error in extract_conversations, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:50,248 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:50,248 - INFO - Session refreshed for extract_conversations, retrying...
+2025-06-16 20:43:50,248 - INFO - Fetching conversations (limit=25)
+2025-06-16 20:43:50,371 - ERROR - Max retries exceeded for extract_conversations
+2025-06-16 20:43:50,371 - ERROR - ❌ Conversations extraction failed: extract_conversations failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:50,371 - INFO - Extracting library data
+2025-06-16 20:43:50,371 - INFO - Fetching library data (folder_id=None)
+2025-06-16 20:43:50,443 - INFO - Authentication error in extract_library, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:50,443 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:50,444 - INFO - Session refreshed for extract_library, retrying...
+2025-06-16 20:43:50,444 - INFO - Fetching library data (folder_id=None)
+2025-06-16 20:43:50,554 - ERROR - Max retries exceeded for extract_library
+2025-06-16 20:43:50,555 - ERROR - ❌ Library extraction failed: extract_library failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:50,555 - INFO - Extracting team statistics
+2025-06-16 20:43:50,555 - INFO - Fetching team stats for avgCallDuration (week)
+2025-06-16 20:43:50,658 - WARNING - Failed to get avgCallDuration: Authentication failed - session may be expired
+2025-06-16 20:43:50,658 - INFO - Fetching team stats for totalCalls (week)
+2025-06-16 20:43:50,774 - WARNING - Failed to get totalCalls: Authentication failed - session may be expired
+2025-06-16 20:43:50,775 - INFO - Fetching team stats for avgWeeklyCalls (week)
+2025-06-16 20:43:50,863 - WARNING - Failed to get avgWeeklyCalls: Authentication failed - session may be expired
+2025-06-16 20:43:50,864 - INFO - Fetching team stats for totalDuration (week)
+2025-06-16 20:43:50,985 - WARNING - Failed to get totalDuration: Authentication failed - session may be expired
+2025-06-16 20:43:50,986 - INFO - Successfully extracted team stats for 0 metrics
+2025-06-16 20:43:50,986 - INFO - ✅ Team stats extraction successful
+2025-06-16 20:43:50,986 - INFO - 🎯 Extraction complete: 1/6 objects in 1.64s
+2025-06-16 20:43:50,986 - INFO - 📊 Success rate: 16.7%, Performance target: ✅ MET
+2025-06-16 20:43:50,986 - WARNING - ⚠️  Only 1 object types extracted (target: ≥5)
+2025-06-16 20:43:50,986 - WARNING - Quick extract failed, testing individual components: Must extract ≥4 object types, got 1
+assert 1 >= 4
+2025-06-16 20:43:50,986 - INFO - Extracting calls data (limit=5)
+2025-06-16 20:43:50,987 - INFO - Fetching my calls (limit=5, offset=0)
+2025-06-16 20:43:51,073 - INFO - Authentication error in extract_calls, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:51,074 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:51,074 - INFO - Session refreshed for extract_calls, retrying...
+2025-06-16 20:43:51,074 - INFO - Fetching my calls (limit=5, offset=0)
+2025-06-16 20:43:51,163 - ERROR - Max retries exceeded for extract_calls
+2025-06-16 20:43:51,163 - WARNING - Individual test extract_calls failed: extract_calls failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:51,163 - INFO - Extracting users data
+2025-06-16 20:43:51,163 - INFO - Fetching users
+2025-06-16 20:43:51,283 - INFO - Authentication error in extract_users, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:51,283 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:51,283 - INFO - Session refreshed for extract_users, retrying...
+2025-06-16 20:43:51,284 - INFO - Fetching users
+2025-06-16 20:43:51,385 - ERROR - Max retries exceeded for extract_users
+2025-06-16 20:43:51,386 - WARNING - Individual test extract_users failed: extract_users failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:51,387 - INFO - Extracting deals data (limit=100)
+2025-06-16 20:43:51,387 - INFO - Fetching deals (limit=100, offset=0)
+2025-06-16 20:43:51,502 - INFO - Authentication error in extract_deals, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:51,502 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:51,502 - INFO - Session refreshed for extract_deals, retrying...
+2025-06-16 20:43:51,503 - INFO - Fetching deals (limit=100, offset=0)
+2025-06-16 20:43:51,600 - ERROR - Max retries exceeded for extract_deals
+2025-06-16 20:43:51,601 - WARNING - Individual test extract_deals failed: extract_deals failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:51,601 - ERROR - ❌ Production performance requirements failed: Individual success rate too low: 0.0% (target: ≥60%)
+assert 0.0 >= 60.0
+2025-06-16 20:43:51,612 - INFO - ✅ Completed test: test_production_performance_requirements
+2025-06-16 20:43:51,612 - INFO - 
+📊 Production Test Results:
+2025-06-16 20:43:51,612 - INFO -   Total test time: 2.28s
+2025-06-16 20:43:51,612 - INFO -   Objects extracted: 0
+2025-06-16 20:43:51,612 - INFO -   Total records: 0
+2025-06-16 20:43:51,612 - INFO -   Success rate: 0.0%
+2025-06-16 20:43:51,612 - INFO -   Failed operations: 1
+2025-06-16 20:43:51,630 - INFO - 🧪 Running test: test_production_data_structure_validation
+2025-06-16 20:43:51,631 - INFO - 📋 Testing Production Data Structure Validation
+2025-06-16 20:43:51,631 - INFO - Gong API client initialized
+2025-06-16 20:43:51,631 - INFO - Gong agent initialized
+2025-06-16 20:43:51,631 - INFO - Extracting Gong session from analysis: /Users/jared.boynton@postman.com/CS-Ascension/app_backend/agent_tools/_godcapture/data/gong-multitab-capture/analysis/godcapture_analysis.json
+2025-06-16 20:43:51,638 - INFO - Successfully extracted Gong session from analysis for jared.boynton@postman.com
+2025-06-16 20:43:51,639 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:51,639 - INFO - Session set for Gong agent: jared.boynton@postman.com
+2025-06-16 20:43:51,639 - INFO -   Validating calls structure...
+2025-06-16 20:43:51,639 - INFO - Extracting calls data (limit=3)
+2025-06-16 20:43:51,639 - INFO - Fetching my calls (limit=3, offset=0)
+2025-06-16 20:43:51,821 - INFO - Authentication error in extract_calls, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:51,821 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:51,822 - INFO - Session refreshed for extract_calls, retrying...
+2025-06-16 20:43:51,822 - INFO - Fetching my calls (limit=3, offset=0)
+2025-06-16 20:43:51,900 - ERROR - Max retries exceeded for extract_calls
+2025-06-16 20:43:51,900 - WARNING -     ❌ calls structure validation failed: extract_calls failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:51,900 - INFO -   Validating users structure...
+2025-06-16 20:43:51,900 - INFO - Extracting users data
+2025-06-16 20:43:51,900 - INFO - Fetching users
+2025-06-16 20:43:52,009 - INFO - Authentication error in extract_users, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:52,009 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:52,009 - INFO - Session refreshed for extract_users, retrying...
+2025-06-16 20:43:52,009 - INFO - Fetching users
+2025-06-16 20:43:52,104 - ERROR - Max retries exceeded for extract_users
+2025-06-16 20:43:52,104 - WARNING -     ❌ users structure validation failed: extract_users failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:52,104 - INFO -   Validating deals structure...
+2025-06-16 20:43:52,104 - INFO - Extracting deals data (limit=100)
+2025-06-16 20:43:52,104 - INFO - Fetching deals (limit=100, offset=0)
+2025-06-16 20:43:52,202 - INFO - Authentication error in extract_deals, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:52,202 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:52,202 - INFO - Session refreshed for extract_deals, retrying...
+2025-06-16 20:43:52,203 - INFO - Fetching deals (limit=100, offset=0)
+2025-06-16 20:43:52,320 - ERROR - Max retries exceeded for extract_deals
+2025-06-16 20:43:52,320 - WARNING -     ❌ deals structure validation failed: extract_deals failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:52,320 - INFO -   Validating conversations structure...
+2025-06-16 20:43:52,320 - INFO - Extracting conversations data (limit=3)
+2025-06-16 20:43:52,320 - INFO - Fetching conversations (limit=3)
+2025-06-16 20:43:52,417 - INFO - Authentication error in extract_conversations, attempting token refresh (attempt 1/2)
+2025-06-16 20:43:52,417 - INFO - Session set for user: jared.boynton@postman.com
+2025-06-16 20:43:52,417 - INFO - Session refreshed for extract_conversations, retrying...
+2025-06-16 20:43:52,417 - INFO - Fetching conversations (limit=3)
+2025-06-16 20:43:52,512 - ERROR - Max retries exceeded for extract_conversations
+2025-06-16 20:43:52,512 - WARNING -     ❌ conversations structure validation failed: extract_conversations failed after 2 attempts: Authentication failed - session may be expired
+2025-06-16 20:43:52,512 - INFO -   Validating team_stats structure...
+2025-06-16 20:43:52,512 - INFO - Extracting team statistics
+2025-06-16 20:43:52,512 - INFO - Fetching team stats for avgCallDuration (week)
+2025-06-16 20:43:52,624 - WARNING - Failed to get avgCallDuration: Authentication failed - session may be expired
+2025-06-16 20:43:52,624 - INFO - Fetching team stats for totalCalls (week)
+2025-06-16 20:43:52,747 - WARNING - Failed to get totalCalls: Authentication failed - session may be expired
+2025-06-16 20:43:52,748 - INFO - Fetching team stats for avgWeeklyCalls (week)
+2025-06-16 20:43:52,812 - WARNING - Failed to get avgWeeklyCalls: Authentication failed - session may be expired
+2025-06-16 20:43:52,813 - INFO - Fetching team stats for totalDuration (week)
+2025-06-16 20:43:52,928 - WARNING - Failed to get totalDuration: Authentication failed - session may be expired
+2025-06-16 20:43:52,928 - INFO - Successfully extracted team stats for 0 metrics
+2025-06-16 20:43:52,928 - WARNING -     ⚠️  team_stats: No data available for validation
+2025-06-16 20:43:53,433 - INFO - ✅ Production data structure validation completed
+2025-06-16 20:43:53,437 - INFO - ✅ Completed test: test_production_data_structure_validation
+2025-06-16 20:43:53,455 - INFO - 🧪 Test environment cleanup completed
+2025-06-16 20:43:53,564 - ERROR - ❌ Full production test suite failed (exit code: 1)
+2025-06-16 20:43:53,564 - INFO - 
+================================================================================
+2025-06-16 20:43:53,564 - INFO - 📊 Production Test Results Summary
+2025-06-16 20:43:53,564 - INFO - ================================================================================
+2025-06-16 20:43:53,564 - INFO -   Authentication: ✅ PASSED
+2025-06-16 20:43:53,564 - INFO -   Api: ❌ FAILED
+2025-06-16 20:43:53,565 - INFO -   Extraction: ❌ FAILED
+2025-06-16 20:43:53,565 - INFO -   Full_Suite: ❌ FAILED
+2025-06-16 20:43:53,565 - INFO - 
+Overall Results:
+2025-06-16 20:43:53,565 - INFO -   Tests passed: 1/4
+2025-06-16 20:43:53,565 - INFO -   Success rate: 25.0%
+2025-06-16 20:43:53,565 - INFO -   Total time: 5.42s
+2025-06-16 20:43:53,565 - WARNING - 
+⚠️  3 test(s) failed
+2025-06-16 20:43:53,565 - INFO - 🔧 Review failed tests and fix issues before production deployment
