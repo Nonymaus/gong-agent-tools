@@ -1,0 +1,67 @@
+
+54m
+LPL Financial <> Postman MCP server with Product Manager
+Jun 20, 2025
+Host: Krista Payne
+Chris and Krista from Postman, along with Venkata and Komal from LPL Financial, discussed Postman's Micro Control Plane (MCP) and its potential integration with various client applications, including web applications, chatbots, and other agents. The conversation covered topics such as the security aspects of integrating the MCP, the approval process for using third-party MCPs, and the challenges of tool selection and design when dealing with a wide server with hundreds of tools and thousands of users. Komal expressed LPL Financial's interest in an internal MCP network and requested further collaboration with Postman to assist with testing and implementation. Open more highlights
+25m
+Hershey / Postman Weekly Sync
+Jun 20, 2025
+The Hershey Co.
+$126,360Closed Won
+Host: Michael Kaplan
+Michael and Chris from Postman, along with Eric from The Hershey Co., discussed the implementation of Postman within The Hershey Co. The primary goals were to address security concerns, implement user governance, and transition the user community from single-player mode to collaboration. The group agreed on a phased approach over the next 60-90 days, focusing on initial setup, user enablement, and exploring Postman's capabilities within The Hershey Co.'s technical stack, particularly in relation to Mulesoft. Open more highlights
+49m
+Postman | RBC | QEX MCP Discussion
+Jun 20, 2025
+RBC
+$1,698,185Negotiation
+Host: Lexi Trota
+Sandeep and Lexi from Postman, along with Umang and Karthik from RBC, discussed the use of Postman's Microservices Connectivity Platform (MCP) server and how it can be leveraged for RBC's API development, testing, and automation needs. The conversation focused on the capabilities of the MCP server, the process of integrating it with RBC's environment, and the potential challenges around security and access restrictions. The key highlights were the exploration of using Postman's Agent and CLI for automating API-related tasks, as well as the discussion around hosting a local MCP server to overcome any access limitations within the RBC environment. Open more highlights
+14m
+Postman & AAA (Clublabs) - Account Sync
+Jun 18, 2025
+Automotive Club of Southern California
+$97,755Pipeline
+Host: Sean Reed
+Sean and Ryan from Postman, along with Hermy and Getachew from Automotive Club of Southern California, discussed Postman's recommendations, including setting up Spec Hub and using the Private API Network to host a hub of API sets, collections, and APIs. Hermy agreed to review the documentation, and Getachew mentioned a potential "phase two" that he would follow up on, while Sean and Ryan encouraged Hermy and Getachew to try out the recommendations and provide feedback during their weekly meeting. Open more highlights
+16m
+Postman & CSAA - Account Sync
+Jun 18, 2025
+CSAA
+$365,904Open
+Host: Sean Reed
+Sean from Postman, along with Sachin and Shreeja from CSAA, discussed the successful deployment of enterprise and pilot group updates, the upcoming version 11.44 deployment, and the integration of Cellpoint with Postman, allowing for automated user creation and access. They also reviewed the usage metrics of the Postman Academy and discussed potential ways to promote it and encourage user engagement, as well as the possibility of an enablement session to help CSAA's team better utilize the academy, and the opportunity to work more closely with CSAA's "center of excellence" team to optimize their software development life cycle. Open more highlights
+12m
+Postman | SoFi | Cursor Extension Troubleshooting
+Jun 18, 2025
+Social Finance, Inc.
+$418,068Pipeline
+Host: Lexi Trota
+Lexi from Postman, along with Douglas from Social Finance, Inc., discussed the integration between Postman and the Cursor AI tool, which Douglas was unable to fully utilize as the code he was viewing in Postman was not stored locally, preventing the AI from interacting with it. They concluded that the intended connection between Postman and Cursor was unclear, and Lexi agreed to escalate the issue to the product team to understand the expected behavior and provide guidance on how to proceed. Open more highlights
+36m
+Postman | AirCanada | Enablement Proposal
+Jun 18, 2025
+Air Canada
+$175,032Open
+Host: Lexi Trota
+Lexi from Postman, along with Raahim from Air Canada, discussed the overall value of the Postman platform, the current usage by Air Canada's teams, and potential next steps to increase collaboration and visibility within the organization. They agreed to gather feedback from the teams using Postman, identify high-impact pilot teams, and schedule a follow-up meeting to discuss metrics and future goals for Postman usage, aligning it with the QA group's objectives and outcomes to improve their overall work processes. Open more highlights
+26m
+Salesforce | Postman MCP Support Sync
+Jun 17, 2025
+Salesforce
+$237,600Problem Identification & Research
+Host: Sachin Khalsa
+Sachin, Noah, Brian and Ian from Postman, along with Daryl from Salesforce, discussed Salesforce's plans to support the Google protocol (A2A) and the MCP protocol, including integrating an MCP client within Agent Force. They also explored potential partnership opportunities, such as Postman acting as an "MCP spigot" to provide access to verified MCP servers, and Salesforce's interest in Postman's Minimum Commercially Viable Solution feature, with Daryl inviting Postman to participate in an upcoming pilot. Open more highlights
+59m
+Postman<>LPL Financial CS Sync
+Jun 17, 2025
+Host: Krista Payne
+Krista, Jonathan and Amanda from Postman, along with Komal and Venkata from LPL Financial, discussed the integration of Postman with GitHub and the use of Postman's Vault feature for securely storing credentials. The key highlights were the recommendation to link Postman collections to a central GitHub repository to ensure data is not lost when developers leave, and the exploration of using Postman Vault and AWS Secrets Manager to manage sensitive information. The group also agreed to schedule a follow-up meeting to discuss Postman's Model Context Protocol (MCP) generator tool in more detail. Open more highlights
+10m
+Postman | Questrade | Set-up Check-in
+Jun 17, 2025
+Questrade
+$99,960Pipeline
+Host: Lexi Trota
+Lexi from Postman, along with Volodymyr from Questrade, discussed the successful configuration of the Postman platform, including the creation of internal and public workspaces, as well as private workspaces for Volodymyr's team. Volodymyr is now waiting for approval to invite his team to the Postman Enterprise project, and Lexi has offered to assist in accelerating the process. The call also touched on the positive feedback from Volodymyr's team regarding the Postman features and the plan for further improvements and exploration of additional use cases once the team has access to the platform. Open more highlights

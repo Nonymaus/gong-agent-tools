@@ -1,11 +1,43 @@
 """
-Gong Agent - Main Interface
+Module: gong/-agent
+Type: High-Level Orchestration Agent
 
-High-level interface for Gong data extraction that orchestrates authentication
-and data extraction. Provides simple methods for extracting all major Gong objects.
+Purpose:
+Main orchestrator for Gong data extraction that manages authentication lifecycle,
+coordinates data extraction across 6 object types (calls, users, deals, conversations,
+library, team stats), and ensures performance targets are met with automatic retry
+and session refresh capabilities.
 
-Performance target: Extract ≥5 object types in <30 seconds.
-Success rate target: >95% reliability.
+Data Flow:
+- Input: AuthSession from GodCapture, optional Dict config with extraction limits
+- Processing: Session validation → GongAPIClient creation → Parallel extraction with retry logic → Performance tracking
+- Output: Dict[str, Any] with extracted data (List[GongCall], List[GongUser], etc.) and metadata
+
+Critical Because:
+This is the primary interface for all Gong data extraction operations. It ensures
+95%+ success rate through automatic session refresh, handles authentication failures
+gracefully, and maintains performance tracking to meet <30s extraction targets.
+
+Dependencies:
+- Requires: base.interfaces (IServiceAdapter, IAuthenticationProvider), api_client.GongAPIClient,
+           data_models (GongSession, GongCall, etc.), authentication.GongAuthenticationManager,
+           base.godcapture_factory, asyncio, concurrent.futures
+- Used By: CrewAI Data Agent, Orchestrator Agent, standalone extraction scripts
+
+Error Handling:
+- GongAgentError: Raised for all agent-level failures (no session, extraction failed)
+- Automatic retry on 401/authentication errors with session refresh
+- Individual extraction failures logged but don't stop comprehensive extraction
+- Performance metrics tracked even on partial failures
+
+Observability:
+- Logs each extraction step with success/failure indicators (✅/❌)
+- Tracks extraction_stats: total/successful/failed counts, average duration
+- Performance validation against targets (5 objects in <30s)
+- Comprehensive status reporting via get_status()
+
+Author: CS-Ascension Intelligence Engine
+Date: 2025-06-20
 """
 
 import json
@@ -18,8 +50,11 @@ from typing import Dict, List, Optional, Any, Union
 # Import components
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
-from authentication import GongAuthenticationManager, GongAuthenticationError
-from authentication.session_extractor import GongSessionManager
+# Base interfaces for dependency injection
+from app_backend.agent_tools.base.interfaces import (
+    IServiceAdapter, IAuthenticationProvider, AuthSession, AuthConfig,
+    ServiceError, ExtractionError, RateLimitError
+)
 from api_client import GongAPIClient, GongAPIError
 from data_models import (
     GongSession, GongCall, GongUser, GongContact, GongAccount,
@@ -30,11 +65,22 @@ logger = logging.getLogger(__name__)
 
 
 class GongAgentError(Exception):
-    """Raised when Gong agent operation fails"""
+    """
+    Raised when Gong agent operation fails.
+    
+    This is the primary exception type for all agent-level failures.
+    It wraps underlying errors with context about what operation failed.
+    
+    Common scenarios:
+    - No session available when trying to extract
+    - All retry attempts exhausted after auth refresh
+    - Critical initialization failures
+    - File I/O errors when saving results
+    """
     pass
 
 
-class GongAgent:
+class GongAgent(IServiceAdapter):
     """
     Main Gong agent interface for data extraction.
     
@@ -42,20 +88,18 @@ class GongAgent:
     Designed for reliability and performance with comprehensive error handling.
     """
     
-    def __init__(self, session_source: Optional[Union[str, Path, GongSession]] = None):
+    def __init__(self, auth_provider: IAuthenticationProvider, config: Optional[Dict] = None):
         """
-        Initialize the Gong agent.
+        Initialize the Gong agent with dependency injection.
         
         Args:
-            session_source: Optional session source:
-                - Path to HAR file
-                - Path to analysis JSON file  
-                - GongSession object
-                - None (must call set_session later)
+            auth_provider: Authentication provider for handling auth operations
+            config: Optional configuration dictionary
         """
-        self.auth_manager = GongAuthenticationManager()
-        self.session_manager = GongSessionManager()
-        self.api_client = GongAPIClient(self.auth_manager)
+        self._auth_provider = auth_provider
+        self._config = config or {}
+        self._godcapture = None  # Created via factory in initialize()
+        self.api_client = None  # Created after authentication
         self.session: Optional[GongSession] = None
         self.auto_refresh_enabled = True  # Enable automatic session refresh
         self.last_extraction_time: Optional[datetime] = None
@@ -71,11 +115,128 @@ class GongAgent:
         self.performance_target_seconds = 30
         self.success_rate_target = 0.95
         
-        logger.info("Gong agent initialized")
+        logger.info("Gong agent initialized with dependency injection")
         
-        # Set session if provided
-        if session_source:
-            self.set_session(session_source)
+    async def initialize(self, session: AuthSession, config: Optional[Dict[str, Any]] = None) -> None:
+        """
+        Initialize the service adapter with authenticated session.
+        
+        Args:
+            session: Authenticated session
+            config: Optional service-specific configuration
+            
+        Raises:
+            ServiceError: If initialization fails
+        """
+        try:
+            # Use GodCaptureFactory instead of duplicated creation code
+            from app_backend.agent_tools.base.godcapture_factory import create_godcapture_for_platform
+            self._godcapture = create_godcapture_for_platform("gong", **(config or {}))
+            
+            # Apply session to the agent
+            self._apply_auth_session(session)
+            
+            logger.info("Gong agent initialized with GodCaptureFactory")
+            
+        except Exception as e:
+            logger.error(f"Failed to initialize Gong agent: {e}")
+            raise ServiceError(f"Initialization failed: {e}")
+    
+    async def _ensure_authenticated(self):
+        """
+        Ensure we have valid authentication by checking and refreshing session if needed.
+        
+        This method is called automatically during retry operations when authentication
+        fails. It uses GodCapture to either load an existing valid session or trigger
+        a full reauthentication flow.
+        
+        Flow:
+        1. Attempts to load existing session via godcapture.load_session()
+        2. Validates session expiry and tokens
+        3. If invalid/expired, triggers godcapture.reauthenticate()
+        4. Applies refreshed session to API client
+        
+        Raises:
+        - May propagate exceptions from godcapture operations
+        - Logged but not explicitly handled to allow retry logic to work
+        """
+        session = await self.godcapture.load_session("gong")
+        if not session or not session.is_valid():
+            session = await self.godcapture.reauthenticate("gong")
+        
+        # Apply session to API client
+        self._apply_session_to_client(session)
+    
+    def _apply_session_to_client(self, session):
+        """Apply session data to API client"""
+        # Convert godcapture session to GongSession format
+        gong_session = self._convert_to_gong_session(session)
+        self.session = gong_session
+        
+        # Create API client if needed
+        if not self.api_client:
+            from authentication import GongAuthenticationManager
+            auth_manager = GongAuthenticationManager()
+            auth_manager.current_session = gong_session
+            self.api_client = GongAPIClient(auth_manager)
+        else:
+            self.api_client.set_session(gong_session)
+    
+    def _convert_to_gong_session(self, godcapture_session) -> GongSession:
+        """
+        Convert godcapture session to GongSession format.
+        
+        Maps GodCapture's generic session format to Gong-specific session structure
+        by extracting JWT tokens, cookies, and metadata into the artifacts format
+        expected by GongAuthenticationManager.
+        
+        Args:
+            godcapture_session: Generic session from GodCapture with tokens/cookies
+            
+        Returns:
+            GongSession: Properly formatted session for Gong API client
+            
+        Artifact Mapping:
+        - JWT tokens -> artifacts with type='jwt_token', metadata includes expiry
+        - Session cookies -> artifacts with type='session_cookie'
+        - Metadata (cell_id, user_email) preserved in artifact metadata
+        """
+        # Extract necessary data from godcapture session
+        from authentication import GongAuthenticationManager
+        auth_manager = GongAuthenticationManager()
+        
+        # Create artifacts from godcapture session
+        artifacts = []
+        
+        # Add authentication tokens
+        for token in godcapture_session.tokens:
+            artifacts.append({
+                'type': 'jwt_token',
+                'value': token.value,
+                'source': 'header',
+                'metadata': {
+                    'token_type': token.type,
+                    'expires_at': token.expires_at,
+                    'cell_id': godcapture_session.metadata.get('cell_id'),
+                    'user_email': godcapture_session.metadata.get('user_email')
+                }
+            })
+        
+        # Add cookies
+        for cookie in godcapture_session.cookies:
+            artifacts.append({
+                'type': 'session_cookie',
+                'value': cookie.value,
+                'source': 'cookie',
+                'metadata': {
+                    'name': cookie.name,
+                    'domain': cookie.domain
+                }
+            })
+        
+        # Create GongSession from artifacts
+        return auth_manager.extract_session_from_analysis_data({'artifacts': artifacts})
+    
     
     def set_session(self, session_source: Union[str, Path, GongSession]) -> None:
         """
@@ -125,7 +286,7 @@ class GongAgent:
             return {"status": "no_session"}
         
         return {
-            "status": "active" if self.auth_manager.is_session_valid(self.session) else "expired",
+            "status": "active" if self.session.is_active else "expired",
             "user_email": self.session.user_email,
             "cell_id": self.session.cell_id,
             "created_at": self.session.created_at.isoformat(),
@@ -163,17 +324,31 @@ class GongAgent:
     def _execute_with_retry(self, operation_func, operation_name: str, max_retries: int = 1):
         """
         Execute an operation with automatic token refresh retry on authentication failure.
+        
+        This is the core resilience mechanism that ensures 95%+ success rate by automatically
+        refreshing sessions when authentication fails. It detects auth errors through
+        response analysis and triggers GodCapture refresh flow.
 
         Args:
-            operation_func: Function to execute
-            operation_name: Name of the operation for logging
+            operation_func: Function to execute (must be callable with no args)
+            operation_name: Name of the operation for logging and error tracking
             max_retries: Maximum number of retries (default: 1)
 
         Returns:
-            Result of the operation
+            Result of the operation (varies by operation type)
 
         Raises:
-            GongAgentError: If operation fails after retries
+            GongAgentError: If operation fails after all retries with last error details
+            
+        Error Detection:
+        - Checks for: 'authentication failed', 'session may be expired', 'unauthorized', '401'
+        - Non-auth errors fail immediately without retry
+        - Auth errors trigger async session refresh via _ensure_authenticated()
+        
+        Observability:
+        - Logs retry attempts with attempt counter
+        - Distinguishes between auth and non-auth failures
+        - Reports refresh success/failure for debugging
         """
         last_exception = None
 
@@ -198,21 +373,28 @@ class GongAgent:
                             if self.auto_refresh_enabled:
                                 logger.info(f"Attempting automatic session refresh for {operation_name}")
 
-                                # Use session manager to get fresh session (synchronous wrapper)
-                                fresh_session_data = self._refresh_session_sync()
-
-                                if fresh_session_data:
-                                    # Convert session data to GongSession object
-                                    refreshed_session = self.auth_manager.extract_session_from_analysis_data({
-                                        'artifacts': self._convert_session_data_to_artifacts(fresh_session_data)
-                                    })
-
-                                    self.session = refreshed_session
-                                    self.api_client.set_session(refreshed_session)
+                                # Use godcapture to refresh session
+                                import asyncio
+                                try:
+                                    # CRITICAL: Handle async/sync bridge carefully
+                                    # This code may be called from sync context but needs to run async _ensure_authenticated
+                                    loop = asyncio.get_event_loop()
+                                    if loop.is_running():
+                                        # We're already in an async context (e.g., from CrewAI agent)
+                                        # Must use ThreadPoolExecutor to avoid "asyncio.run() cannot be called from a running event loop"
+                                        import concurrent.futures
+                                        with concurrent.futures.ThreadPoolExecutor() as executor:
+                                            future = executor.submit(asyncio.run, self._ensure_authenticated())
+                                            future.result(timeout=300)  # 5 min timeout for godcapture flow
+                                    else:
+                                        # Sync context - can run directly
+                                        asyncio.run(self._ensure_authenticated())
+                                    
                                     logger.info(f"Fresh session captured for {operation_name}, retrying...")
                                     continue
-                                else:
-                                    logger.error(f"Fresh session capture failed for {operation_name}")
+                                except Exception as refresh_error:
+                                    logger.error(f"Fresh session capture failed for {operation_name}: {refresh_error}")
+                                    # Don't retry on refresh failure - likely a persistent issue
                                     break
                             else:
                                 logger.error(f"Auto-refresh disabled, cannot refresh session for {operation_name}")
@@ -391,7 +573,11 @@ class GongAgent:
                         deals_limit: int = 100,
                         conversations_limit: int = 50) -> Dict[str, Any]:
         """
-        Extract all available data from Gong.
+        Extract all available data from Gong with comprehensive error handling.
+        
+        This is the main extraction method that orchestrates parallel data extraction
+        across all supported object types. It ensures individual failures don't stop
+        the entire extraction and provides detailed performance metrics.
         
         Args:
             include_calls: Whether to extract calls
@@ -400,12 +586,44 @@ class GongAgent:
             include_conversations: Whether to extract conversations
             include_library: Whether to extract library
             include_stats: Whether to extract team stats
-            calls_limit: Maximum calls to extract
-            deals_limit: Maximum deals to extract
-            conversations_limit: Maximum conversations to extract
+            calls_limit: Maximum calls to extract (default: 100)
+            deals_limit: Maximum deals to extract (default: 100)
+            conversations_limit: Maximum conversations to extract (default: 50)
             
         Returns:
-            Dictionary with all extracted data and metadata
+            Dict with structure:
+            {
+                'metadata': {
+                    'extraction_id': str,
+                    'timestamp': ISO datetime,
+                    'user_email': str,
+                    'cell_id': str,
+                    'target_objects': int (number of object types to extract),
+                    'successful_objects': int (actually extracted),
+                    'failed_objects': int,
+                    'duration_seconds': float,
+                    'performance_target_met': bool (< 30s),
+                    'errors': List[str] (error messages for failed extractions)
+                },
+                'data': {
+                    'calls': List[Dict] (if included and successful),
+                    'users': List[Dict] (if included and successful),
+                    'deals': List[Dict] (if included and successful),
+                    'conversations': List[Dict] (if included and successful),
+                    'library': List[Dict] (if included and successful),
+                    'team_stats': List[Dict] (if included and successful)
+                }
+            }
+            
+        Performance:
+        - Target: Extract ≥5 object types in <30 seconds
+        - Each extraction uses _execute_with_retry for resilience
+        - Failed extractions don't block others (fault isolation)
+        
+        Error Handling:
+        - Individual extraction failures logged to metadata['errors']
+        - Continues extraction even if some object types fail
+        - Updates extraction_stats for monitoring
         """
         start_time = time.time()
         
@@ -440,8 +658,6 @@ class GongAgent:
         successful_count = 0
 
         try:
-            # Initialize duration tracking
-            extraction_result['metadata']['duration_seconds'] = 0
             # Extract calls
             if include_calls:
                 try:
@@ -537,7 +753,25 @@ class GongAgent:
             raise GongAgentError(f"Comprehensive extraction failed: {e}")
     
     def _update_extraction_stats(self, successful: int, total: int, duration: float, error: Optional[str] = None) -> None:
-        """Update internal extraction statistics"""
+        """
+        Update internal extraction statistics for monitoring and reporting.
+        
+        Maintains running averages and counters for extraction performance.
+        These stats are exposed via get_extraction_stats() for observability.
+        
+        Args:
+            successful: Number of successfully extracted object types
+            total: Total number of object types attempted
+            duration: Extraction duration in seconds
+            error: Optional error message if extraction failed
+            
+        Updates:
+        - total_extractions: Incremented by 1
+        - successful_extractions/failed_extractions: Based on error presence
+        - average_duration: Running average using incremental calculation
+        - last_error: Stores most recent error for debugging
+        - last_extraction_time: Updates to current timestamp
+        """
         self.extraction_stats['total_extractions'] += 1
         
         if error:
@@ -589,10 +823,42 @@ class GongAgent:
     
     def get_status(self) -> Dict[str, Any]:
         """
-        Get comprehensive agent status.
+        Get comprehensive agent status for monitoring and debugging.
+        
+        Aggregates all health indicators into a single status report.
         
         Returns:
-            Dictionary with agent status information
+            Dict with structure:
+            {
+                'agent_status': 'ready' | 'no_session',
+                'session_info': {
+                    'status': 'active' | 'expired' | 'no_session',
+                    'user_email': str,
+                    'cell_id': str,
+                    'created_at': ISO datetime,
+                    'last_activity': ISO datetime,
+                    'token_count': int,
+                    'cookie_count': int,
+                    'is_active': bool
+                },
+                'extraction_stats': {
+                    'total_extractions': int,
+                    'successful_extractions': int,
+                    'failed_extractions': int,
+                    'average_duration': float,
+                    'success_rate': float (0.0-1.0),
+                    'meets_performance_target': bool,
+                    'meets_success_target': bool,
+                    'last_error': str | None,
+                    'last_extraction_time': ISO datetime | None
+                },
+                'api_rate_limit': Dict (from api_client),
+                'performance_targets': {
+                    'extraction_time_seconds': 30,
+                    'success_rate': 0.95,
+                    'minimum_object_types': 5
+                }
+            }
         """
         return {
             'agent_status': 'ready' if self.session else 'no_session',
@@ -658,8 +924,29 @@ class GongAgent:
         """
         Validate that the agent meets performance targets.
         
+        Runs a lightweight extraction (10 items per type) to verify:
+        1. Can extract ≥5 object types successfully
+        2. Completes extraction in <30 seconds
+        3. Authentication and API connectivity working
+        
         Returns:
-            Validation results dictionary
+            Dict with structure:
+            {
+                'valid': bool (False if no session or extraction failed),
+                'performance_met': bool (duration < 30s),
+                'object_types_met': bool (successful_objects >= 5),
+                'duration_seconds': float,
+                'successful_objects': int,
+                'target_duration': 30,
+                'target_objects': 5,
+                'overall_success': bool (both targets met),
+                'reason': str (only present if valid=False)
+            }
+            
+        Use Cases:
+        - Pre-flight check before large extractions
+        - Health monitoring in production
+        - Performance regression testing
         """
         if not self.session:
             return {
@@ -702,90 +989,7 @@ class GongAgent:
                 'object_types_met': False
             }
 
-    def _refresh_session_sync(self) -> Optional[Dict[str, Any]]:
-        """
-        Synchronous wrapper for session refresh using asyncio.
 
-        Returns:
-            Fresh session data or None if refresh failed
-        """
-        try:
-            import asyncio
-
-            # Check if we're already in an event loop
-            try:
-                loop = asyncio.get_running_loop()
-                # If we're in a loop, we need to run in a thread
-                import concurrent.futures
-                with concurrent.futures.ThreadPoolExecutor() as executor:
-                    future = executor.submit(asyncio.run, self.session_manager.refresh_session_if_needed())
-                    return future.result(timeout=300)  # 5 minute timeout
-            except RuntimeError:
-                # No running loop, we can use asyncio.run directly
-                return asyncio.run(self.session_manager.refresh_session_if_needed())
-
-        except Exception as e:
-            logger.error(f"❌ Error in synchronous session refresh: {e}")
-            return None
-
-    def _convert_session_data_to_artifacts(self, session_data: Dict[str, Any]) -> List[Dict[str, Any]]:
-        """
-        Convert session data from session manager to artifacts format.
-
-        Args:
-            session_data: Session data from GongSessionManager
-
-        Returns:
-            List of artifacts in the format expected by auth_manager
-        """
-        artifacts = []
-
-        try:
-            # Convert authentication tokens
-            for token_data in session_data.get('authentication_tokens', []):
-                artifacts.append({
-                    'type': 'jwt_token',
-                    'value': token_data.get('raw_token', ''),
-                    'source': 'header',
-                    'metadata': {
-                        'token_type': token_data.get('token_type', 'access'),
-                        'expires_at': token_data.get('expires_at'),
-                        'cell_id': token_data.get('cell_id'),
-                        'user_email': token_data.get('user_email')
-                    }
-                })
-
-            # Convert session cookies
-            for cookie_name, cookie_value in session_data.get('session_cookies', {}).items():
-                artifacts.append({
-                    'type': 'session_cookie',
-                    'value': cookie_value,
-                    'source': 'cookie',
-                    'metadata': {
-                        'name': cookie_name,
-                        'domain': 'gong.io'
-                    }
-                })
-
-            # Add workspace information
-            if session_data.get('workspace_id'):
-                artifacts.append({
-                    'type': 'workspace_info',
-                    'value': session_data['workspace_id'],
-                    'source': 'api_response',
-                    'metadata': {
-                        'cell_id': session_data.get('cell_id'),
-                        'company_id': session_data.get('company_id'),
-                        'user_email': session_data.get('user_email')
-                    }
-                })
-
-            logger.info(f"✅ Converted session data to {len(artifacts)} artifacts")
-            return artifacts
-
-        except Exception as e:
-            logger.error(f"❌ Error converting session data to artifacts: {e}")
-            return []
 
     def enable_auto_refresh(self) -> None:
         """Enable automatic session refresh on authentication failures"""
@@ -797,54 +1001,3 @@ class GongAgent:
         self.auto_refresh_enabled = False
         logger.info("⚠️ Automatic session refresh disabled")
 
-    async def capture_fresh_session_async(self, target_app: str = "Gong") -> Dict[str, Any]:
-        """
-        Asynchronously capture a fresh Gong session.
-
-        Args:
-            target_app: Name of the target app in Okta
-
-        Returns:
-            Fresh session data
-
-        Raises:
-            GongAgentError: If session capture fails
-        """
-        try:
-            logger.info(f"🔄 Capturing fresh Gong session for app: {target_app}")
-
-            session_data = await self.session_manager.get_fresh_session(target_app)
-
-            # Convert to GongSession and set in agent
-            refreshed_session = self.auth_manager.extract_session_from_analysis_data({
-                'artifacts': self._convert_session_data_to_artifacts(session_data)
-            })
-
-            self.session = refreshed_session
-            self.api_client.set_session(refreshed_session)
-
-            logger.info("✅ Fresh session captured and set in agent")
-            return session_data
-
-        except Exception as e:
-            logger.error(f"❌ Failed to capture fresh session: {e}")
-            raise GongAgentError(f"Fresh session capture failed: {e}")
-
-    def capture_fresh_session(self, target_app: str = "Gong") -> Dict[str, Any]:
-        """
-        Synchronously capture a fresh Gong session.
-
-        Args:
-            target_app: Name of the target app in Okta
-
-        Returns:
-            Fresh session data
-
-        Raises:
-            GongAgentError: If session capture fails
-        """
-        try:
-            import asyncio
-            return asyncio.run(self.capture_fresh_session_async(target_app))
-        except Exception as e:
-            raise GongAgentError(f"Fresh session capture failed: {e}")

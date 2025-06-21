@@ -1,0 +1,108 @@
+Postman | Questrade | Set-up Check-in
+
+Lexi Trota with Questrade
+Recorded on Jun 17, 2025 via Zoom, 10m
+
+
+
+Participants
+
+Postman
+Lexi Trota, Senior Enterprise Customer Success Manager
+
+Questrade
+Volodymyr Kovalenko, Consultant - Quality Assurance Engineer
+
+
+
+Transcript
+
+0:00 | Lexi
+hey, volodymyr. 
+
+0:01 | Volodymyr
+Hello, Alexey. How are you? 
+
+0:03 | Lexi
+Good. How about yourself? 
+
+0:04 | Volodymyr
+Yeah, I'm fine too. Thanks. 
+
+0:07 | Lexi
+Good, good. Yeah. So wanted to set up this time as a touchpoint just to check in to see how things have been going since we walked through kind of some of the basic configuration and setup stuff within the platform. 
+
+0:23 | Volodymyr
+Yep. Basically, everything is really good. I could configure everything which I would like. 
+
+0:30 | Lexi
+Okay. Did you use the videos as reference or the recording as reference? 
+
+0:37 | Volodymyr
+Yeah. One of the reference was the recording. I think. Do you see my screen? 
+
+0:42 | Lexi
+Yep. You just moved the postman platform? Okay? 
+
+0:47 | Volodymyr
+Okay. Yeah, that's another thing. So, yeah, basically, I finally could receive all permissions for me and for two of my teammates just to try to work with that as it's supposed to be, I created what we discussed with you. The one workspace is like our… main branch let's say, which cannot be changed by everyone for internal team purpose with everything that we have. And that most part of the team is supposed to be here as a viewer. Then I created another one which is public and available for all quest rate for all our company with limited number of collections. Only those which can be really useful for external guys, not from my team. And I get rid of any secrets from this one. So it's like totally protected for any leaks. And I showed to my teammates how to use their pride, private possible workspaces, which can be a fork from the original one to sync back all changes and to create different purchase quests. So now for me, the next stage is to invite all of my teammates and I created a request for our management team for that, but looks like this decision can be, really long. Unfortunately, yeah. So now, I am only waiting when I will receive any feedback from the management team about possibility to invite all my teammates to this project and start to use postman enterprise entirely. Okay? 
+
+2:28 | Lexi
+Yeah, that's great. So let's talk about what we could talk about the approval process as well, but I'm curious. So you got, you have two other members in your team trying this, correct? Yeah. 
+
+2:41 | Volodymyr
+Have. 
+
+2:42 | Lexi
+they, how, what's kind of the feedback on, or have you, have they tried to do like the fork… pull request, merge workflow yet? And like what's the feedback? How's that, how is that working for, on this smaller scale? Obviously, it's not the, your whole team but have the, has that been tested yet? And, and how is that working? If so? 
+
+3:06 | Volodymyr
+Yeah. And we tried to do it a few times unfortunately not a lot of so far because you right now don't have especially the tasks to create like new workspaces student points. But basically feedback was good that it's more useful and better than with the git experience, I could say. So I hope that with more practice… we will have more adoption of displacement features inside our flow nice. 
+
+3:39 | Lexi
+Yeah, it's a little bit of relearning but learning curve shouldn't be too high. So that's great. And then, have you like shared that team workspace with like your external consumers as well and made that available or like explicitly or like what's the feedback from that team as well? 
+
+4:03 | Volodymyr
+Not yet because now until we do not have like ultimates possible to use postman enterprise, we still need to keep up and running our git management part. So right now, until we don't have full access here from my team, we still would like to reference everyone to our git where everyone have an access. And then when everyone can join this project postal enterprise, we can then duplicate our git repository for that and navigate everyone here. But right now, just to avoid this confusion that some part of work can be done here, some part of work can be done there, we would like to keep other guys refer to them, right? 
+
+4:49 | Lexi
+There's this in between point where you're trying to get into here to have everything consolidated. But now you're kind of in both spots now. Yeah. 
+
+4:59 | Volodymyr
+Exactly. Makes. 
+
+5:00 | Lexi
+sense. So with that, what is the approval process? Is that through like your own leadership? Or is this more the approval, from the like postman admins like Felipe and that team? 
+
+5:18 | Volodymyr
+Well, that's not even from the postman admin that's from. So how it's built up in on our site, we have a specific azure active directory and users should be add to this azure active directory to be possible to access to the postman enterprise. And that's not on the even postman admin site and not on my manager team lead site that's on like our global financial management department that's their responsibility. And now I created their request. And well, I'm waiting a decision about this action, okay? 
+
+5:55 | Lexi
+Let me ask those. Let me ask, the admins in the account if there's a way to maybe… accelerate that. I know we've gotten other people on the platform pretty quickly before so, and I know there's a, there's open seats, so that shouldn't be an issue. But let me check in with them just to see if there's anything that can be done there because obviously, you don't want you hanging on in two places too long, and also want to be able to continue the momentum of kind of utilizing in what, you have set up in here because what you have set up is perfect. It's exactly what we talked about. What I'd love to do. We'll have to wait a little bit until your team does get permission in here. But once the team gets in settled, you get more acclimated with this base workflow. There's other things that I think we can help with based on our other conversations that are like more not super advanced but just like kind of the next like evolution of what you can do in postman to help especially since I know there's a lot of like maintenance and upkeep and enhancement around existing apis. There's a lot you can do there from like a testing perspective as well. That will help automate some of that with your CI CD processes as well. That's that's an area that I remember picking up from last time that I'd love to dive into. But I don't think that makes sense until everybody is in and acclimated. My goal here was to get you set up with like foundational setup, right? Like an area where a place where you can start to build additional capabilities and use cases in the platform. So that's this having this workspace structure and the workflow set up in this way makes will make those other things and workflows that we get into eventually possible, right? So you're very much, on the right track. 
+
+8:15 | Volodymyr
+Yeah, exactly. I think so too. So that's a really nice starting point. And now I just need to provide this new solution for my team and therefore that we need to have an access and as far as it will be provided, then yeah, we can adopt it and then start to improve. I think there are a lot of room for improvement here and we can do better in the future. But yeah, we need to start from the basics and then go to the, some smart things. 
+
+8:45 | Lexi
+Exactly. Okay. So, great. And thank you, for walking me through this is perfect. I don't really have any feedback or anything else. I think the next step is clear. Let's get your let's, get the rest of your team in here and utilizing and seeing the initial benefit of the collaboration portions of this and then we can kind of move forward. So what, like I said, what I'll do is let me reach out to our admins at po at, for the postman and see if there's… see if there's any way to get… accelerate, getting your team on. I'll and I can kind of go to bat and explain like we're doing like we've already set up like kind of the perfect use case for collaboration in postman and we don't want to like lose that momentum around that and continue enabling volodymyr's team with the capabilities because that was one of their focuses, right? And why we did all of those trainings and things. So this should I'm hoping we can get, some acceleration on that. So I'll check in with them and let you know. 
+
+9:50 | Volodymyr
+Yeah, thank you. Thank you for that support. That would be really great. 
+
+9:54 | Lexi
+Okay. Cool. Anything else while you have me? Everything looks? 
+
+10:00 | Volodymyr
+Good. Yeah. So, yeah, I'm just aspiring to like provide it for my team. So let's wait until you have the improvement. And then, yeah, then we can maybe do another meeting and think about it absolutely. 
+
+10:13 | Lexi
+Love, to get with your team, maybe do a regroup, do some more discovery, figure out what where else we can, where else we can tackle use cases in postman because there's a lot more. So, so, all right, cool. I'll give you the time back but, you know where to find me. If you have any questions in the interim, I'll get back to you shortly around, the access for your team. Yeah. 
+
+10:38 | Volodymyr
+Thank you, Alexey, and have a good day you. 
+
+10:40 | Lexi
+Too. Thanks a lot of me. 
+
+10:41 | Volodymyr
+Bye. 

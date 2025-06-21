@@ -1,27 +1,25 @@
 """
-Gong Data Models Package
+Module: __init__
+Type: Internal Module
 
-This package contains Pydantic data models for Gong platform objects.
-Models are based on comprehensive HAR analysis of Gong's API endpoints.
+Purpose:
+Data models and validation schemas for Gong platform integration.
 
-Key Features:
-- JWT authentication token models with validation
-- Core business objects (calls, users, deals, accounts)
-- Activity and engagement tracking models
-- Analytics and metrics models
-- API response wrappers with pagination support
+Data Flow:
+- Input: Configuration parameters, Authentication credentials
+- Processing: API interaction
+- Output: Processed results
 
-Usage:
-    from gong.data_models import GongCall, GongUser, GongDeal
-    
-    # Create a call object
-    call = GongCall(
-        call_id="123",
-        call_type="video",
-        start_time=datetime.now()
-    )
+Critical Because:
+Central integration point for Gong - without this, no Gong data can be accessed.
+
+Dependencies:
+- Requires: models
+- Used By: app_backend.ingestion.orchestrator, app_backend.api_bridge.server
+
+Author: Julia Evans
+Date: 2025-06-20
 """
-
 from .models import (
     # Authentication & Session
     GongJWTPayload,

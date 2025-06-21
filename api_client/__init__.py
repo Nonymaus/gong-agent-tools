@@ -1,33 +1,25 @@
 """
-Gong API Client Package
+Module: __init__
+Type: Internal Module
 
-Provides methods for extracting Gong data using session tokens.
-Includes error handling, rate limiting, and comprehensive endpoint coverage.
+Purpose:
+Gong API client implementation for making authenticated requests to Gong services.
 
-Key Features:
-- Session-based authentication with JWT tokens
-- Rate limiting and retry logic
-- Comprehensive endpoint coverage (232 API patterns)
-- Error handling and timeout management
-- Data extraction for all major Gong objects
+Data Flow:
+- Input: Configuration parameters, Authentication credentials
+- Processing: Data extraction, API interaction
+- Output: Processed results
 
-Usage:
-    from gong.api_client import GongAPIClient
-    from gong.authentication import GongAuthenticationManager
-    
-    # Initialize client with authentication
-    auth_manager = GongAuthenticationManager()
-    session = auth_manager.extract_session_from_analysis(analysis_file)
-    
-    client = GongAPIClient(auth_manager)
-    client.set_session(session)
-    
-    # Extract data
-    calls = client.get_my_calls(limit=50)
-    deals = client.get_deals(limit=50)
-    users = client.get_users()
+Critical Because:
+Central integration point for Gong - without this, no Gong data can be accessed.
+
+Dependencies:
+- Requires: client
+- Used By: app_backend.ingestion.orchestrator, app_backend.api_bridge.server
+
+Author: Julia Evans
+Date: 2025-06-20
 """
-
 from .client import (
     GongAPIClient,
     GongAPIError,

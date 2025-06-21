@@ -1,27 +1,25 @@
 """
-Gong Authentication Package
+Module: __init__
+Type: Internal Module
 
-Handles Gong session extraction and token management with Okta integration.
-Extracts and validates JWT tokens from HAR capture sessions.
+Purpose:
+Gong integration component handling specific functionality within the CS-Ascension platform.
 
-Key Features:
-- JWT token extraction and validation
-- Session management with expiration checking
-- Okta SAML integration support
-- HAR capture session extraction
-- Cell-based architecture support (us-14496)
+Data Flow:
+- Input: HTTP requests, Configuration parameters, Authentication credentials
+- Processing: Input validation, Data extraction, API interaction
+- Output: Processed results
 
-Usage:
-    from gong.authentication import GongAuthenticationManager
-    
-    # Extract session from HAR capture
-    auth_manager = GongAuthenticationManager()
-    session = auth_manager.extract_session_from_har(har_file_path)
-    
-    # Get headers for API requests
-    headers = auth_manager.get_session_headers(session)
+Critical Because:
+Central integration point for Gong - without this, no Gong data can be accessed.
+
+Dependencies:
+- Requires: auth_manager
+- Used By: app_backend.ingestion.orchestrator, app_backend.api_bridge.server
+
+Author: Julia Evans
+Date: 2025-06-20
 """
-
 from .auth_manager import (
     GongAuthenticationManager,
     GongAuthenticationError,
