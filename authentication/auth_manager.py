@@ -35,8 +35,7 @@ from data_models import (
 )
 
 # Import JWT decoder from _godcapture
-sys.path.insert(0, str(Path(__file__).parent.parent.parent / "_godcapture"))
-from decoders.jwt_decoder import JWTDecoder
+from app_backend.agent_tools._godcapture.decoders.jwt_decoder import JWTDecoder
 
 logger = logging.getLogger(__name__)
 

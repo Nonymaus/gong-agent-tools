@@ -48,15 +48,13 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any, Union
 
 # Import components
-import sys
-sys.path.insert(0, str(Path(__file__).parent))
 # Base interfaces for dependency injection
 from app_backend.agent_tools.base.interfaces import (
     IServiceAdapter, IAuthenticationProvider, AuthSession, AuthConfig,
     ServiceError, ExtractionError, RateLimitError
 )
-from api_client import GongAPIClient, GongAPIError
-from data_models import (
+from .api_client.client import GongAPIClient, GongAPIError
+from .data_models.models import (
     GongSession, GongCall, GongUser, GongContact, GongAccount,
     GongDeal, GongActivity, GongCallMetrics, GongAPIResponse
 )

@@ -1,0 +1,418 @@
+[
+  {
+    "id": "call_0",
+    "type": "call",
+    "title": "LPL Financial <> Postman MCP server with Product Manager",
+    "duration": "54m",
+    "date": "Jun 20, 2025",
+    "host": "Krista Payne",
+    "company": "",
+    "started": "Jun 20, 2025",
+    "participants": [
+      "Krista Payne"
+    ]
+  },
+  {
+    "id": "call_1",
+    "type": "call",
+    "title": "Jun 20, 2025",
+    "duration": "LPL Financial <> Postman MCP server with Product Manager",
+    "date": "Jun 20, 2025",
+    "host": "Michael Kaplan",
+    "company": "",
+    "started": "Jun 20, 2025",
+    "participants": [
+      "Michael Kaplan"
+    ]
+  },
+  {
+    "id": "call_2",
+    "type": "call",
+    "title": "25m",
+    "duration": "Chris and Krista from Postman, along with Venkata and Komal from LPL Financial, discussed Postman's Micro Control Plane (MCP) and its potential integration with various client applications, including web applications, chatbots, and other agents. The conversation covered topics such as the security aspects of integrating the MCP, the approval process for using third-party MCPs, and the challenges of tool selection and design when dealing with a wide server with hundreds of tools and thousands of users. Komal expressed LPL Financial's interest in an internal MCP network and requested further collaboration with Postman to assist with testing and implementation. Open more highlights",
+    "date": "Jun 20, 2025",
+    "host": "Michael Kaplan",
+    "company": "",
+    "started": "Jun 20, 2025",
+    "participants": [
+      "Michael Kaplan"
+    ]
+  },
+  {
+    "id": "call_3",
+    "type": "call",
+    "title": "Hershey / Postman Weekly Sync",
+    "duration": "25m",
+    "date": "Jun 20, 2025",
+    "host": "Michael Kaplan",
+    "company": "",
+    "started": "Jun 20, 2025",
+    "participants": [
+      "Michael Kaplan"
+    ]
+  },
+  {
+    "id": "call_4",
+    "type": "call",
+    "title": "Jun 20, 2025",
+    "duration": "Hershey / Postman Weekly Sync",
+    "date": "Jun 20, 2025",
+    "host": "Michael Kaplan",
+    "company": "",
+    "started": "Jun 20, 2025",
+    "participants": [
+      "Michael Kaplan"
+    ]
+  },
+  {
+    "id": "call_5",
+    "type": "call",
+    "title": "49m",
+    "duration": "Michael and Chris from Postman, along with Eric from The Hershey Co., discussed the implementation of Postman within The Hershey Co. The primary goals were to address security concerns, implement user governance, and transition the user community from single-player mode to collaboration. The group agreed on a phased approach over the next 60-90 days, focusing on initial setup, user enablement, and exploring Postman's capabilities within The Hershey Co.'s technical stack, particularly in relation to Mulesoft. Open more highlights",
+    "date": "Jun 20, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 20, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_6",
+    "type": "call",
+    "title": "Postman | RBC | QEX MCP Discussion",
+    "duration": "49m",
+    "date": "Jun 18, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_7",
+    "type": "call",
+    "title": "Jun 20, 2025",
+    "duration": "Postman | RBC | QEX MCP Discussion",
+    "date": "Jun 18, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_8",
+    "type": "call",
+    "title": "14m",
+    "duration": "Sandeep and Lexi from Postman, along with Umang and Karthik from RBC, discussed the use of Postman's Microservices Connectivity Platform (MCP) server and how it can be leveraged for RBC's API development, testing, and automation needs. The conversation focused on the capabilities of the MCP server, the process of integrating it with RBC's environment, and the potential challenges around security and access restrictions. The key highlights were the exploration of using Postman's Agent and CLI for automating API-related tasks, as well as the discussion around hosting a local MCP server to overcome any access limitations within the RBC environment. Open more highlights",
+    "date": "Jun 18, 2025",
+    "host": "Sean Reed",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Sean Reed"
+    ]
+  },
+  {
+    "id": "call_9",
+    "type": "call",
+    "title": "Postman & AAA (Clublabs) - Account Sync",
+    "duration": "14m",
+    "date": "Jun 18, 2025",
+    "host": "Sean Reed",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Sean Reed"
+    ]
+  },
+  {
+    "id": "call_10",
+    "type": "call",
+    "title": "Jun 18, 2025",
+    "duration": "Postman & AAA (Clublabs) - Account Sync",
+    "date": "Jun 18, 2025",
+    "host": "Sean Reed",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Sean Reed"
+    ]
+  },
+  {
+    "id": "call_11",
+    "type": "call",
+    "title": "$97,755Pipeline",
+    "duration": "Automotive Club of Southern California",
+    "date": "Jun 18, 2025",
+    "host": "Sean Reed",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Sean Reed"
+    ]
+  },
+  {
+    "id": "call_12",
+    "type": "call",
+    "title": "16m",
+    "duration": "Sean and Ryan from Postman, along with Hermy and Getachew from Automotive Club of Southern California, discussed Postman's recommendations, including setting up Spec Hub and using the Private API Network to host a hub of API sets, collections, and APIs. Hermy agreed to review the documentation, and Getachew mentioned a potential \"phase two\" that he would follow up on, while Sean and Ryan encouraged Hermy and Getachew to try out the recommendations and provide feedback during their weekly meeting. Open more highlights",
+    "date": "Jun 18, 2025",
+    "host": "Sean Reed",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Sean Reed"
+    ]
+  },
+  {
+    "id": "call_13",
+    "type": "call",
+    "title": "Postman & CSAA - Account Sync",
+    "duration": "16m",
+    "date": "Jun 18, 2025",
+    "host": "Sean Reed",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Sean Reed"
+    ]
+  },
+  {
+    "id": "call_14",
+    "type": "call",
+    "title": "Jun 18, 2025",
+    "duration": "Postman & CSAA - Account Sync",
+    "date": "Jun 18, 2025",
+    "host": "Sean Reed",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Sean Reed"
+    ]
+  },
+  {
+    "id": "call_15",
+    "type": "call",
+    "title": "12m",
+    "duration": "Sean from Postman, along with Sachin and Shreeja from CSAA, discussed the successful deployment of enterprise and pilot group updates, the upcoming version 11.44 deployment, and the integration of Cellpoint with Postman, allowing for automated user creation and access. They also reviewed the usage metrics of the Postman Academy and discussed potential ways to promote it and encourage user engagement, as well as the possibility of an enablement session to help CSAA's team better utilize the academy, and the opportunity to work more closely with CSAA's \"center of excellence\" team to optimize their software development life cycle. Open more highlights",
+    "date": "Jun 18, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_16",
+    "type": "call",
+    "title": "Postman | SoFi | Cursor Extension Troubleshooting",
+    "duration": "12m",
+    "date": "Jun 18, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_17",
+    "type": "call",
+    "title": "Jun 18, 2025",
+    "duration": "Postman | SoFi | Cursor Extension Troubleshooting",
+    "date": "Jun 18, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_18",
+    "type": "call",
+    "title": "36m",
+    "duration": "Lexi from Postman, along with Douglas from Social Finance, Inc., discussed the integration between Postman and the Cursor AI tool, which Douglas was unable to fully utilize as the code he was viewing in Postman was not stored locally, preventing the AI from interacting with it. They concluded that the intended connection between Postman and Cursor was unclear, and Lexi agreed to escalate the issue to the product team to understand the expected behavior and provide guidance on how to proceed. Open more highlights",
+    "date": "Jun 18, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 18, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_19",
+    "type": "call",
+    "title": "Postman | AirCanada | Enablement Proposal",
+    "duration": "36m",
+    "date": "Jun 17, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 17, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_20",
+    "type": "call",
+    "title": "Jun 18, 2025",
+    "duration": "Postman | AirCanada | Enablement Proposal",
+    "date": "Jun 17, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 17, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_21",
+    "type": "call",
+    "title": "26m",
+    "duration": "Lexi from Postman, along with Raahim from Air Canada, discussed the overall value of the Postman platform, the current usage by Air Canada's teams, and potential next steps to increase collaboration and visibility within the organization. They agreed to gather feedback from the teams using Postman, identify high-impact pilot teams, and schedule a follow-up meeting to discuss metrics and future goals for Postman usage, aligning it with the QA group's objectives and outcomes to improve their overall work processes. Open more highlights",
+    "date": "Jun 17, 2025",
+    "host": "Sachin Khalsa",
+    "company": "",
+    "started": "Jun 17, 2025",
+    "participants": [
+      "Sachin Khalsa"
+    ]
+  },
+  {
+    "id": "call_22",
+    "type": "call",
+    "title": "Salesforce | Postman MCP Support Sync",
+    "duration": "26m",
+    "date": "Jun 17, 2025",
+    "host": "Sachin Khalsa",
+    "company": "",
+    "started": "Jun 17, 2025",
+    "participants": [
+      "Sachin Khalsa"
+    ]
+  },
+  {
+    "id": "call_23",
+    "type": "call",
+    "title": "Jun 17, 2025",
+    "duration": "Salesforce | Postman MCP Support Sync",
+    "date": "Jun 17, 2025",
+    "host": "Krista Payne",
+    "company": "",
+    "started": "Jun 17, 2025",
+    "participants": [
+      "Krista Payne"
+    ]
+  },
+  {
+    "id": "call_24",
+    "type": "call",
+    "title": "59m",
+    "duration": "Sachin, Noah, Brian and Ian from Postman, along with Daryl from Salesforce, discussed Salesforce's plans to support the Google protocol (A2A) and the MCP protocol, including integrating an MCP client within Agent Force. They also explored potential partnership opportunities, such as Postman acting as an \"MCP spigot\" to provide access to verified MCP servers, and Salesforce's interest in Postman's Minimum Commercially Viable Solution feature, with Daryl inviting Postman to participate in an upcoming pilot. Open more highlights",
+    "date": "Jun 17, 2025",
+    "host": "Krista Payne",
+    "company": null,
+    "started": "Jun 17, 2025",
+    "participants": [
+      "Krista Payne"
+    ]
+  },
+  {
+    "id": "call_25",
+    "type": "call",
+    "title": "Postman<>LPL Financial CS Sync",
+    "duration": "59m",
+    "date": "Jun 17, 2025",
+    "host": "Krista Payne",
+    "company": "",
+    "started": "Jun 17, 2025",
+    "participants": [
+      "Krista Payne"
+    ]
+  },
+  {
+    "id": "call_26",
+    "type": "call",
+    "title": "Jun 17, 2025",
+    "duration": "Postman<>LPL Financial CS Sync",
+    "date": "Jun 17, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 17, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_27",
+    "type": "call",
+    "title": "10m",
+    "duration": "Krista, Jonathan and Amanda from Postman, along with Komal and Venkata from LPL Financial, discussed the integration of Postman with GitHub and the use of Postman's Vault feature for securely storing credentials. The key highlights were the recommendation to link Postman collections to a central GitHub repository to ensure data is not lost when developers leave, and the exploration of using Postman Vault and AWS Secrets Manager to manage sensitive information. The group also agreed to schedule a follow-up meeting to discuss Postman's Model Context Protocol (MCP) generator tool in more detail. Open more highlights",
+    "date": "Jun 17, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 17, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_28",
+    "type": "call",
+    "title": "Postman | Questrade | Set-up Check-in",
+    "duration": "10m",
+    "date": "Jun 17, 2025",
+    "host": "Lexi Trota",
+    "company": "",
+    "started": "Jun 17, 2025",
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "call_29",
+    "type": "call",
+    "title": "Jun 17, 2025",
+    "duration": "Postman | Questrade | Set-up Check-in",
+    "date": null,
+    "host": "Lexi Trota",
+    "company": "",
+    "started": null,
+    "participants": [
+      "Lexi Trota"
+    ]
+  },
+  {
+    "id": "gong_call1_transcript",
+    "type": "call",
+    "title": "Salesforce | Postman MCP Support Sync",
+    "participants": [],
+    "transcript": "Salesforce | Postman MCP Support Sync\n\nSachin Khalsa with Salesforce\nRecorded on Jun 17, 2025 via Zoom, 26m\n\n\n\nParticipants\n\nPostman\nSachin Khalsa, Enterprise Customer Success Manager\nNoah Schwartz, Head of Product, API Network\nBrian Coons, Strategic Account Director\nIan Cundiff, Strategic Solutions Engineer (East Coast)\nRodric Rabbah, Head of Product, Flows\n\nSalesforce\nDaryl Martis, Director, Product Management Einstein Ai\n\n\n\nTranscript\n\n0:00 | Brian\ncan you hear crying in the background right "
+  },
+  {
+    "id": "gong_call2_transcript",
+    "type": "call",
+    "title": "Postman | Questrade | Set-up Check-in",
+    "participants": [],
+    "transcript": "Postman | Questrade | Set-up Check-in\n\nLexi Trota with Questrade\nRecorded on Jun 17, 2025 via Zoom, 10m\n\n\n\nParticipants\n\nPostman\nLexi Trota, Senior Enterprise Customer Success Manager\n\nQuestrade\nVolodymyr Kovalenko, Consultant - Quality Assurance Engineer\n\n\n\nTranscript\n\n0:00 | Lexi\nhey, volodymyr. \n\n0:01 | Volodymyr\nHello, Alexey. How are you? \n\n0:03 | Lexi\nGood. How about yourself? \n\n0:04 | Volodymyr\nYeah, I'm fine too. Thanks. \n\n0:07 | Lexi\nGood, good. Yeah. So wanted to set up this time as a "
+  },
+  {
+    "id": "email_email1",
+    "type": "email",
+    "content": "Brian Coons\nfrom\nBrian Coons\nStrategic Account Director, Postman\nto\nDanai Kongkarat\nSoftware Asset Management Analyst, Sr, Salesforce\n11:26 am EDT\nRe: Postman Licensing\nPricing\nHi Danai - I was CC'd on the message yesterday, we sent over a quote to Insight around midday CST so this is in their court now.\n\nHowever, this quote is only for the 431 licenses to be renewed, it does not include the additional users from the survey. My question is - would you like to see an option where we include these",
+    "subject": "Brian Coons"
+  },
+  {
+    "id": "email_email2",
+    "type": "email",
+    "content": "Brian Coons\nfrom\nBrian Coons\nStrategic Account Director, Postman\nto\nCharla Pola\nRvp, ISV Business Development, Salesforce\ncc\nRose Winter\nAnalyst, Salesforce\nSean Felden\nJay Hurst\nVice President, Product Management, Salesforce\nKris Harrison\nSenior Director, Product Management, Salesforce\nNatalie Roberts\n3:47 pm EDT\nRe: 10:30-11:30 meeting cancellation/opportunity: Postman & Salesforce connection @TDX (Sachin Khalsa & Alice Steinglass)\nHi Charla - apologies for our delayed response. We finally thi",
+    "subject": "Brian Coons"
+  }
+]

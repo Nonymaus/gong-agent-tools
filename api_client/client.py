@@ -31,10 +31,8 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 # Import authentication and data models
-import sys
-sys.path.insert(0, str(Path(__file__).parent.parent))
-from authentication import GongAuthenticationManager, GongAuthenticationError
-from data_models import (
+from ..authentication import GongAuthenticationManager, GongAuthenticationError
+from ..data_models import (
     GongSession, GongCall, GongUser, GongContact, GongAccount, 
     GongDeal, GongActivity, GongEmailActivity, GongCallMetrics,
     GongAPIResponse, GongPaginatedResponse
